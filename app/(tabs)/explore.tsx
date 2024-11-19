@@ -35,10 +35,10 @@ export default function SearchPage() {
   const [isOptionsVisible, setOptionsVisible] = useState(false);
 
   {
-    /* 
-    useState for notification badge on top of the notification icon 
-    In this example, I added 5 as the number of notifications 
-    
+    /*
+    useState for notification badge on top of the notification icon
+    In this example, I added 5 as the number of notifications
+
     - Lynn
   */
   }
@@ -82,7 +82,7 @@ export default function SearchPage() {
   return (
     <SafeAreaView className="flex-1 justify-center px-4">
       <View className="flex-row justify-between items-center px-4 py-3 bg-black">
-        {/* This is the left side of the "Nav Bar" on the top containing the icon  
+        {/* This is the left side of the "Nav Bar" on the top containing the icon
           and the search text */}
         <View className="flex-row gap-3">
           <Image
@@ -92,11 +92,11 @@ export default function SearchPage() {
           <Text className=" text-xl font-bold text-slate-100">Search</Text>
         </View>
 
-        {/* 
+        {/*
           This is the right side of the "Nav Bar" on the top containing the
-          notification bell icon and the hamburger menu icon. 
-          
-          I made them filled out when pressed so that, in the future, when we 
+          notification bell icon and the hamburger menu icon.
+
+          I made them filled out when pressed so that, in the future, when we
           implement a "notification screen" where they see all there notifications
           and when we implement a "menu screen", we don't need to add the animations then.
 
@@ -242,9 +242,9 @@ export default function SearchPage() {
               interesting here at Skyline College!
             </Text>
 
-            {/* 
-          
-            This section is for the recommended clubs. I made it scrollable 
+            {/*
+
+            This section is for the recommended clubs. I made it scrollable
             as I thought it would be cleaner that way and things wouldn't
             be as congested anymore. After all, in the future, we would
             be adding more cards and such.
@@ -298,21 +298,21 @@ export default function SearchPage() {
                 title="International Student Club’s Successful Cultural Exchange Day"
                 date="October 11, 2024"
                 image={require("@/assets/images/NewsImagesForExplore/testNews.png")}
-                desc="On Friday, September 27, 2024, the International Student Club (ISC) 
-              hosted a cultural exchange event that was formally open to all students and 
-              staff. This was their third general meeting for the 2024-2025 academic year, 
-              filled with enjoyable activities and a diverse map-pinning game featuring various 
-              countries. The meeting was a huge success, attended by 23 students and staff from 
+                desc="On Friday, September 27, 2024, the International Student Club (ISC)
+              hosted a cultural exchange event that was formally open to all students and
+              staff. This was their third general meeting for the 2024-2025 academic year,
+              filled with enjoyable activities and a diverse map-pinning game featuring various
+              countries. The meeting was a huge success, attended by 23 students and staff from
               various departments."
               />
               <NewsCard
                 title="International Student Club’s Successful Cultural Exchange Day"
                 date="October 11, 2024"
                 image={require("@/assets/images/NewsImagesForExplore/testNews.png")}
-                desc="On Friday, September 27, 2024, the International Student Club (ISC) hosted a cultural exchange event that was formally open to all students and 
-              staff. This was their third general meeting for the 2024-2025 academic year, 
-              filled with enjoyable activities and a diverse map-pinning game featuring various 
-              countries. The meeting was a huge success, attended by 23 students and staff from 
+                desc="On Friday, September 27, 2024, the International Student Club (ISC) hosted a cultural exchange event that was formally open to all students and
+              staff. This was their third general meeting for the 2024-2025 academic year,
+              filled with enjoyable activities and a diverse map-pinning game featuring various
+              countries. The meeting was a huge success, attended by 23 students and staff from
               various departments."
               />
             </View>

@@ -1,4 +1,7 @@
 import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
+
+import { View } from 'react-native';
+
 import { useFonts } from 'expo-font';
 import { Stack } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
@@ -30,14 +33,14 @@ export default function RootLayout() {
   // , headerBackground: () => <View className='bg-neutral-900/20 w-full h-full' />
 
   return (
-    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <Stack screenOptions={{ headerTransparent: true }}>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="clubsListing/index" options={{ title: 'Clubs Listing' }} />
-        {/* <Stack.Screen name="clubsListing/details/[clubName].tsx" options={{ title: 'Clubs Listing' }} /> */}
-        <Stack.Screen name="map/index" options={{ title: 'Map' }} />
-        <Stack.Screen name="+not-found" />
-      </Stack>
-    </ThemeProvider>
+      <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
+          <Stack screenOptions={{ headerTransparent: true }}>
+            <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+            <Stack.Screen name="clubsListing/index" options={{ title: 'Clubs Listing' }} />
+            {/* <Stack.Screen name="clubsListing/details/[clubName].tsx" options={{ title: 'Clubs Listing' }} /> */}
+            <Stack.Screen name="map/index" options={{ title: 'Map' }} />
+            <Stack.Screen name="+not-found" />
+          </Stack>
+      </ThemeProvider>
   );
 }
