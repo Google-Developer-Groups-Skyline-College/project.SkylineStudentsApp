@@ -49,19 +49,19 @@ const POINTS_OF_INTEREST = [
             longitudeDelta: 0.01,
         }
     }
-    
+
 ]
 
 export default function Map() {
     // const mapRef = useRef<MapView>();
 
-    // const [ currentMargin, setCurrentMargin ] = useState(1);
+    const [ currentMargin, setCurrentMargin ] = useState(1);
 
-    // useEffect(() => {
-    //     setTimeout(() => {
-    //         setCurrentMargin(0);
-    //     }, 1000);
-    // }, []);
+    useEffect(() => {
+        setTimeout(() => {
+            setCurrentMargin(0);
+        }, 1000);
+    }, []);
 
     return (
         <View className='flex-1'>
@@ -89,11 +89,11 @@ export default function Map() {
                 {POINTS_OF_INTEREST.map((marker, index) => (
                     <Marker title={marker.title} description={marker.description} key={index} coordinate={marker.coordinates}></Marker>
                 ))}
-            </MapView>
+            </MapView> */}
             <ThemedView className='absolute bottom-0 w-full h-48 rounded-t-3xl flex-col justify-start items-center p-4'>
                 <ThemedText type='subtitle'>The STEM Center</ThemedText>
                 <Text className='text-white text-center'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</Text>
-            </ThemedView> */}
+            </ThemedView>
         </View>
 
     );

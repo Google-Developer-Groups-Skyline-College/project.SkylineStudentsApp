@@ -12,7 +12,7 @@ import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons'
 import MaterialIcons from '@expo/vector-icons/MaterialIcons'
 import FontAwesome6 from '@expo/vector-icons/FontAwesome6'
 
-function EventCard({ title, time, location, img }: { title: string, time: string, location: string, img: ImageSourcePropType }) {  
+function EventCard({ title, time, location, img }: { title: string, time: string, location: string, img: ImageSourcePropType }) {
   return (
     <View className='h-32 overflow-hidden'>
       <ExpoImage source={img} contentFit='cover' style={{ width: '100%', height: '100%', borderRadius: 8 }} />
@@ -35,19 +35,14 @@ function EventCard({ title, time, location, img }: { title: string, time: string
 export default function HomeScreen() {
   return (
     <ParallaxScrollView
-      headerBackgroundColor={{ light: '#FF5454FF', dark: '#740101FF' }}
+      headerBackgroundColor={{ light: '#000', dark: '#000' }}
       headerImage={
         <ExpoImage 
-          source={require('@/assets/images/backdrop.png')}
+          source={require('$/images/backdrop.png')}
           contentFit='cover'
           contentPosition={{top: '10%'}}
           style={{ width: '100%', height: '114%' }}
         />
-
-        // <Image
-        //   source={require('@/assets/images/backdrop.png')}
-        //   className='w-full h-[144%]'
-        // />
       }>
 
       <ThemedView className='flex flex-row justify-center items-center gap-2'>
@@ -55,21 +50,21 @@ export default function HomeScreen() {
           <ThemedText className='mt-2' type='title'>Hello, <Text className='text-red-400'>{UserConfig.displayName}!</Text></ThemedText>
           <ThemedText className='text-center'>Let's Explore Your <ThemedText className='font-bold'>Campus</ThemedText>.</ThemedText>
         </View>
-        {/* <HelloWave /> */}
       </ThemedView>
+      
       <ThemedText type='subtitle' className='border-b-[1px] border-yellow-500 pb-2'>🎉 Today's Events</ThemedText>
       <ThemedView className='gap-2'>
         <EventCard
           title='Computer Science Club Meeting'
           time='1:10 PM - 2:00 PM'
           location='Building 7, Room 7-324'
-          img={require('@/assets/images/cscMeeting.png')}
+          img={require('$/images/cscMeeting.png')}
         />
         <EventCard
           title='STEM Clubs Boba Social'
           time='3:00 PM - 4:00 PM'
           location='STEM Center'
-          img={require('@/assets/images/bobaSocial.jpg')}
+          img={require('$/images/bobaSocial.jpg')}
         />
       </ThemedView>
 
@@ -81,7 +76,7 @@ export default function HomeScreen() {
           <Text className='font-bold text-lg text-white'>My Calender</Text>
         </ThemedView>
         <ThemedView darkColor='#385515' lightColor='#689B2AFF' className='flex justify-center items-center gap-1 w-[49%] h-28 p-2 rounded-2xl'>
-          <Link href='../clubs' className='z-10 absolute w-full h-full' /> 
+          <Link href='/clubsListing' className='z-10 absolute w-full h-full' /> 
           <MaterialCommunityIcons name="party-popper" size={32} color="#FFF" />
           <Text className='font-bold text-lg text-white'>Student Clubs</Text>
         </ThemedView>
