@@ -86,7 +86,7 @@ export default function SearchPage() {
           and the search text */}
         <View className="flex-row gap-3">
           <Image
-            source={require("@/assets/images/tspIcon.png")}
+            source={require("$/images/tspIcon.png")}
             className="w-8 h-8"
           />
           <Text className=" text-xl font-bold text-slate-100">Search</Text>
@@ -262,21 +262,21 @@ export default function SearchPage() {
                 <Card
                   type="Club"
                   field="Data Science"
-                  image={require("@/assets/images/ClubImagesForExplore/genericDEI(1).jpg")}
+                  image={require("$/images/ClubImagesForExplore/genericDEI(1).jpg")}
                   title="Data Science Club"
                   description="Hello, this is the Data Science Club available at Skyline College. We analyze and visualize data and derive conclusions from those."
                 />
                 <Card
                   type="Club"
                   field="Math"
-                  image={require("@/assets/images/ClubImagesForExplore/genericDEI(2).jpg")}
+                  image={require("$/images/ClubImagesForExplore/genericDEI(2).jpg")}
                   title="Math Club"
                   description="Hello, come join the Math Club at Skyline to explore mathematical concepts, and engage in problem-solving activities! Everyone is welcome!"
                 />
                 <Card
                   type="Club"
                   field="Engineering"
-                  image={require("@/assets/images/ClubImagesForExplore/genericDEI(3).jpeg")}
+                  image={require("$/images/ClubImagesForExplore/genericDEI(3).jpeg")}
                   title="Engineering & Robotics Club"
                   description="Hello, this is the Engineering & Robotics Club at Skyline College. Join the Engineering & Robotics Club to build exciting projects, and collaborate with peers."
                 />
@@ -297,7 +297,7 @@ export default function SearchPage() {
               <NewsCard
                 title="International Student Club’s Successful Cultural Exchange Day"
                 date="October 11, 2024"
-                image={require("@/assets/images/NewsImagesForExplore/testNews.png")}
+                image={require("$/images/NewsImagesForExplore/testNews.png")}
                 desc="On Friday, September 27, 2024, the International Student Club (ISC)
               hosted a cultural exchange event that was formally open to all students and
               staff. This was their third general meeting for the 2024-2025 academic year,
@@ -308,7 +308,7 @@ export default function SearchPage() {
               <NewsCard
                 title="International Student Club’s Successful Cultural Exchange Day"
                 date="October 11, 2024"
-                image={require("@/assets/images/NewsImagesForExplore/testNews.png")}
+                image={require("$/images/NewsImagesForExplore/testNews.png")}
                 desc="On Friday, September 27, 2024, the International Student Club (ISC) hosted a cultural exchange event that was formally open to all students and
               staff. This was their third general meeting for the 2024-2025 academic year,
               filled with enjoyable activities and a diverse map-pinning game featuring various

@@ -10,9 +10,8 @@ import { Image as ExpoImage } from 'expo-image'
 import { Clubs } from '@/constants/Clubs';
 
 export default function ClubDetails() {
-    const { clubName } : { clubName: string }= useLocalSearchParams()
-    const clubDetails = Clubs[clubName]
-    // console.log(clubDetails.description)
+    const { id } : { id: string } = useLocalSearchParams()
+    const clubDetails = Clubs[id]
 
     return (
         <ParallaxScrollView
@@ -27,7 +26,7 @@ export default function ClubDetails() {
         >
             <View className='flex items-center gap-2'>
                 <ExpoImage source={clubDetails.logoImg} style={{ width: 64, height: 64, borderRadius: 9999 }} />
-                <ThemedText type='title' className='text-center pt-1'>{clubName}</ThemedText>
+                <ThemedText type='title' className='text-center pt-1'>{id}</ThemedText>
                 <ThemedText>{clubDetails.description}</ThemedText>
 
                 

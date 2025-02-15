@@ -16,7 +16,14 @@ function ClubCard({ title, backdrop, logo }: { title: string, time: string, loca
 
     return (
         <View className='flex flex-row items-center h-28 rounded-2xl overflow-hidden'>
-            <Link href={`./details/${title}`} className='z-10 absolute w-full h-full' />
+
+            <Link
+                href={{
+                    pathname: 'clubsListing/details/[id]',
+                    params: { id: `${title}` },
+                }}
+                className='z-10 absolute w-full h-full'
+            />
 
             {/* club card backdrop img */}
             <ExpoImage source={backdrop} contentFit='cover' style={{ position: 'absolute', width: '100%', height: '100%', borderRadius: 8 }} />
@@ -58,7 +65,7 @@ export default function ClubsListing() {
                 headerBackgroundColor={{ light: '#000', dark: '#000' }}
                 headerImage={
                     <ExpoImage
-                        source={require('@/assets/images/club_rush.jpg')}
+                        source={require('$/images/club_rush.jpg')}
                         contentFit='cover'
                         contentPosition={{bottom: '10%'}}
                         style={{ width: '100%', height: '110%' }}

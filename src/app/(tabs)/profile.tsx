@@ -15,7 +15,7 @@ export default function HomeScreen() {
       headerBackgroundColor={{ light: '#000', dark: '#000' }}
       headerImage={
         <Image
-          source={require('@/assets/images/backdrop.png')}
+          source={require('$/images/backdrop.png')}
           className='w-full h-[144%]'
         />
       }>

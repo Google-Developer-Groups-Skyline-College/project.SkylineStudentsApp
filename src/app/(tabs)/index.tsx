@@ -38,7 +38,7 @@ export default function HomeScreen() {
       headerBackgroundColor={{ light: '#000', dark: '#000' }}
       headerImage={
         <ExpoImage 
-          source={require('@/assets/images/backdrop.png')}
+          source={require('$/images/backdrop.png')}
           contentFit='cover'
           contentPosition={{top: '10%'}}
           style={{ width: '100%', height: '114%' }}
@@ -58,13 +58,13 @@ export default function HomeScreen() {
           title='Computer Science Club Meeting'
           time='1:10 PM - 2:00 PM'
           location='Building 7, Room 7-324'
-          img={require('@/assets/images/cscMeeting.png')}
+          img={require('$/images/cscMeeting.png')}
         />
         <EventCard
           title='STEM Clubs Boba Social'
           time='3:00 PM - 4:00 PM'
           location='STEM Center'
-          img={require('@/assets/images/bobaSocial.jpg')}
+          img={require('$/images/bobaSocial.jpg')}
         />
       </ThemedView>
 
@@ -76,7 +76,7 @@ export default function HomeScreen() {
           <Text className='font-bold text-lg text-white'>My Calender</Text>
         </ThemedView>
         <ThemedView darkColor='#385515' lightColor='#689B2AFF' className='flex justify-center items-center gap-1 w-[49%] h-28 p-2 rounded-2xl'>
-          <Link href='../clubsListing' className='z-10 absolute w-full h-full' /> 
+          <Link href='/clubsListing' className='z-10 absolute w-full h-full' /> 
           <MaterialCommunityIcons name="party-popper" size={32} color="#FFF" />
           <Text className='font-bold text-lg text-white'>Student Clubs</Text>
         </ThemedView>
