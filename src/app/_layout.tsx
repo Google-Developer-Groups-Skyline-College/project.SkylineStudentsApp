@@ -1,10 +1,10 @@
 import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
 
-import { View } from 'react-native';
-
+import * as SplashScreen from 'expo-splash-screen';
 import { useFonts } from 'expo-font';
 import { Stack } from 'expo-router';
-import * as SplashScreen from 'expo-splash-screen';
+import { StatusBar } from 'expo-status-bar'
+
 import { useEffect } from 'react';
 import 'react-native-reanimated';
 
@@ -16,7 +16,7 @@ SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
   const colorScheme = useColorScheme();
-  const [loaded] = useFonts({
+  const [ loaded ] = useFonts({
     SpaceMono: require('$/fonts/SpaceMono-Regular.ttf'),
   });
 
@@ -34,6 +34,7 @@ export default function RootLayout() {
 
   return (
       <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
+          <StatusBar style='light'/>
           <Stack screenOptions={{ headerTransparent: true }}>
             <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
             <Stack.Screen name="clubsListing/index" options={{ title: 'Clubs Listing' }} />

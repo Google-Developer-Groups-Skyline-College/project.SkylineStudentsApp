@@ -3,6 +3,7 @@ import React, { useRef, useState, useEffect } from 'react';
 import { Text, StyleSheet, View } from 'react-native';
 import { ThemedView } from '@/components/ThemedView';
 import { ThemedText } from '@/components/ThemedText';
+import { Image as ExpoImage } from 'expo-image'
 
 const CAMERA_START = {
     center: {
@@ -49,11 +50,10 @@ const POINTS_OF_INTEREST = [
             longitudeDelta: 0.01,
         }
     }
-
 ]
 
 export default function Map() {
-    // const mapRef = useRef<MapView>();
+    const mapRef = useRef<MapView>(null);
 
     const [ currentMargin, setCurrentMargin ] = useState(1);
 
@@ -63,7 +63,15 @@ export default function Map() {
         }, 1000);
     }, []);
 
+    const postLayout = () => {
+        mapRef.current?.animateCamera({center: {
+            latitude: 37.62976867594795,
+            longitude: -122.46756161476384,
+        }, pitch: 45, heading: 20,altitude: 200, zoom: 40}, {duration: 500});
+    }
+
     return (
+
         <View className='flex-1'>
             {/* <MapView
                 style={{ marginBottom: currentMargin, ...StyleSheet.absoluteFillObject }}
@@ -71,6 +79,8 @@ export default function Map() {
                 mapType={MAP_TYPES.HYBRID}
                 initialCamera={CAMERA_START}
                 cameraZoomRange={CAMERA_ZOOM_RANGE}
+
+                pitchEnabled
 
                 showsIndoors
                 showsIndoorLevelPicker
@@ -80,19 +90,23 @@ export default function Map() {
                 followsUserLocation
                 showsCompass={false}
 
+                onPress={postLayout}
+
                 loadingEnabled
 
-                // liteMode
-                // ref={mapRef}
+                ref={mapRef}
                 className='absolute w-full h-full'
             >
                 {POINTS_OF_INTEREST.map((marker, index) => (
                     <Marker title={marker.title} description={marker.description} key={index} coordinate={marker.coordinates}></Marker>
                 ))}
             </MapView> */}
-            <ThemedView className='absolute bottom-0 w-full h-48 rounded-t-3xl flex-col justify-start items-center p-4'>
+            <ThemedView className='absolute bottom-0 w-full rounded-t-3xl flex-col justify-start items-center p-4 gap-4'>
                 <ThemedText type='subtitle'>The STEM Center</ThemedText>
-                <Text className='text-white text-center'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</Text>
+                <ThemedText className='text-center'>The Skyline College STEM Center brings together academic and student support services for students taking science, technology, engineering and math courses.</ThemedText>
+                <View className='w-full h-32'>
+                    <ExpoImage source={require('$/images/bobaSocial.jpg')} style={{ width: '100%', height: '100%' }} />
+                </View>
             </ThemedView>
         </View>
 

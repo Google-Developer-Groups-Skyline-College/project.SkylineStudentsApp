@@ -19,8 +19,8 @@ interface ClubsProps {
 }
 
 export const Clubs: ClubsProps = {
-  'Computer Science Club': {
-    description: 'The best club lowkey',
+  'GDGoC Skyline College': {
+    description: `🌴 Welcome! We are a Google Developer Groups on Campus chapter and the official Computer Science Club at Skyline College. We're a STEM community at a California community college located in San Bruno. We pioneer student growth in software development, through events like hackathons, and by building a strong platform for student growth in the large world of computer science.`,
     backdropImg: require('$/images/clubs/photos/computer_science_club/backdrop.png'),
     logoImg: require('$/images/clubs/logos/computer_science_club.png'),
     meetingLocation: 'Building 7, Room 7-324',

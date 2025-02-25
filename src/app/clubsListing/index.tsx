@@ -1,13 +1,12 @@
 import { View, Text, ImageSourcePropType, TextInput } from 'react-native'
-import { Image as ExpoImage } from 'expo-image'
-import { FlashList } from '@shopify/flash-list'
 import { Stack, Link } from 'expo-router'
 import { useState } from 'react'
 
-import ParallaxScrollView from '@/components/ParallaxScrollView'
 import { ThemedText } from '@/components/ThemedText'
+import ParallaxScrollView from '@/components/ParallaxScrollView'
 import FilterSelector from '@/components/FilterSelector'
 import ReturnHome from '@/components/ReturnHome'
+import Image from '@/components/Image'
 
 import { Clubs } from '@/constants/Clubs'
 import { TagDetails } from '@/constants/Tags'
@@ -19,22 +18,22 @@ function ClubCard({ title, backdrop, logo }: { title: string, time: string, loca
 
             <Link
                 href={{
-                    pathname: 'clubsListing/details/[id]',
+                    pathname: '/clubsListing/details/[id]',
                     params: { id: `${title}` },
                 }}
                 className='z-10 absolute w-full h-full'
             />
 
             {/* club card backdrop img */}
-            <ExpoImage source={backdrop} contentFit='cover' style={{ position: 'absolute', width: '100%', height: '100%', borderRadius: 8 }} />
+            <Image source={backdrop} contentFit='cover' className="absolute w-full h-full"/>
 
             {/* dark contrast overlay */}
             <View className='absolute w-full h-full bg-black/50' />
 
             {/* club title and club logo */}
             <View className='flex flex-row w-full justify-between items-center p-4'>
-                <Text className='text-white text-2xl font-bold'>{title}</Text>
-                <ExpoImage source={logo} style={{ width: 76, height: 76, borderRadius: 9999 }} />
+                <Text className='text-white text-2xl font-bold max-w-80'>{title}</Text>
+                <Image source={logo} className='w-[76px] h-[76px] rounded-2xl' />
             </View>
 
             {/* side color tags */}
@@ -64,7 +63,7 @@ export default function ClubsListing() {
             <ParallaxScrollView
                 headerBackgroundColor={{ light: '#000', dark: '#000' }}
                 headerImage={
-                    <ExpoImage
+                    <Image
                         source={require('$/images/club_rush.jpg')}
                         contentFit='cover'
                         contentPosition={{bottom: '10%'}}
