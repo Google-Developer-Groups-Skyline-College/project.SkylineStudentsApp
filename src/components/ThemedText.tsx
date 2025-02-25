@@ -1,4 +1,4 @@
-import { Text, type TextProps, StyleSheet } from 'react-native';
+import { Text, type TextProps } from 'react-native';
 
 import { useColorScheme } from 'react-native';
 
@@ -6,6 +6,7 @@ export type ThemedTextProps = TextProps & {
   lightColor?: string;
   darkColor?: string;
   flipContrast?: boolean;
+  disableColorScheme?: boolean;
   type?: 'default' | 'title' | 'defaultSemiBold' | 'subtitle' | 'link';
 };
 
@@ -14,21 +15,20 @@ export function ThemedText({
   lightColor,
   darkColor,
   className,
+  disableColorScheme,
   type = 'default',
   ...rest
 }: ThemedTextProps) {
   return (
     <Text
-    className={`${styles[type]} ${useColorScheme() === 'dark' ? 'text-white' : 'text-black'} ${className}`}
+      className={`${baseStyles[type]} ${(!disableColorScheme ? (useColorScheme() === 'dark' ? 'text-white' : 'text-black') : '')} ${className}`}
       {...rest}
     />
   );
 }
 
-// TODO consider removing default styling type
-
-const styles = {
-  default: 'text-base leading-6',
-  title: 'text-[32px] font-bold leading-10',
+const baseStyles: { [type: string]: string } = {
+  default: 'text-base',
+  title: 'text-[32px] font-bold',
   subtitle: 'text-2xl font-bold'
 }
