@@ -11,7 +11,6 @@ export type ThemedTextProps = TextProps & {
 };
 
 export function ThemedText({
-  style,
   lightColor,
   darkColor,
   className,
@@ -30,5 +29,5 @@ export function ThemedText({
 const baseStyles: { [type: string]: string } = {
   default: 'text-base',
   title: 'text-[32px] font-bold',
-  subtitle: 'text-2xl font-bold'
+  subtitle: 'text-[18px] font-bold',
 }

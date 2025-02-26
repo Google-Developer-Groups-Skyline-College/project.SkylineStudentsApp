@@ -41,14 +41,8 @@ function ClubCard({ title, backdrop, logo }: { title: string, time: string, loca
                 {Clubs[title].tags.length == 0 ? <View className='absolute border-l-4 border-neutral-300/75 w-full h-full' /> : <></> }
 
                 {Clubs[title].tags.map((tagName) => {
-                    return (
-                        <View key={tagName} style={{ borderColor: TagDetails[tagName].color, height: (100 / Clubs[title].tags.length) }} className='border-l-4 w-full' />
-                    )
+                    return <View key={tagName} style={{ borderColor: TagDetails[tagName].color, height: (100 / Clubs[title].tags.length) }} className='w-full border-l-4' />
                 } )}
-                
-                {/* <View className='border-l-4 border-sky-400/75 w-full h-[33%]' />
-                <View className='border-l-4 border-red-400/75 w-full h-[33%]' />
-                <View className='border-l-4 border-lime-400/75 w-full h-[33%]' /> */}
             </View>
         </View>
     )

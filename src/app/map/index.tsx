@@ -1,6 +1,7 @@
-import React, { useRef, useState, useEffect } from 'react';
 // import MapView, { PROVIDER_GOOGLE, MAP_TYPES, Marker } from 'react-native-maps';
-import { Text, StyleSheet, View } from 'react-native';
+
+import React, { useRef, useState, useEffect } from 'react';
+import { View } from 'react-native';
 import { ThemedView } from '@/components/ThemedView';
 import { ThemedText } from '@/components/ThemedText';
 import { Image as ExpoImage } from 'expo-image'
