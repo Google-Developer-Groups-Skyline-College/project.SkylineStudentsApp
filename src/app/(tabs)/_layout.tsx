@@ -1,5 +1,6 @@
-import { Tabs } from 'expo-router';
 import React from 'react';
+
+import { Tabs } from 'expo-router';
 
 import { View } from 'react-native';
 
@@ -26,7 +27,7 @@ export default function TabLayout() {
         tabBarBackground: () => <View className='bg-neutral-900/95 w-full h-full'></View>
       }}>
       <Tabs.Screen
-        name="index"
+        name='index'
         options={{
           title: 'Home',
           tabBarIcon: ({ color, focused }) => (
@@ -35,7 +36,7 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
-        name="explore"
+        name='explore'
         options={{
           title: 'Explore',
           tabBarIcon: ({ color, focused }) => (
@@ -44,7 +45,7 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
-        name="profile"
+        name='profile'
         options={{
           title: 'Profile',
           tabBarIcon: ({ color, focused }) => (
@@ -53,7 +54,7 @@ export default function TabLayout() {
         }}
       />
       {/* <Tabs.Screen
-        name="map"
+        name='map'
         options={{
           title: 'Map',
           tabBarIcon: ({ color, focused }) => (

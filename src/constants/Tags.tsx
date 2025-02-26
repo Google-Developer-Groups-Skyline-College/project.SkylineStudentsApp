@@ -20,11 +20,11 @@ export const Tags = {
 
 export const TagDetails: TagProps = {
     [Tags.STEM]: {
-        color: '#80B13CFF',
+        color: '#95DD31FF',
         icon: <MaterialCommunityIcons name='atom-variant' size={ICON_SIZE} color='white' />
     },
     [Tags.HOBBY]: {
-        color: '#CE822CFF',
+        color: '#FAA543FF',
         icon: <Entypo name='emoji-happy' size={ICON_SIZE} color='white' />
     },
     [Tags.CULTURAL]: {
