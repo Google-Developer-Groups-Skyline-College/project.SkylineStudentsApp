@@ -132,8 +132,8 @@ export default function HomeScreen() {
             <Text className='font-bold text-orange-400 border border-orange-400 p-2'>Map Page</Text>
           </Link>
 
-          <Link href='../map' asChild>
-            <Text className='font-bold text-orange-400 border border-orange-400 p-2'>Map Page</Text>
+          <Link href='../demo' asChild>
+            <Text className='font-bold text-orange-400 border border-orange-400 p-2'>Demo Page</Text>
           </Link>
 
           <Footer />
