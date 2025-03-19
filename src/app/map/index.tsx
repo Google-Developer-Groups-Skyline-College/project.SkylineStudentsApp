@@ -1,9 +1,8 @@
-// import MapView, { PROVIDER_GOOGLE, MAP_TYPES, Marker } from 'react-native-maps';
-
 import React, { useRef, useState, useEffect } from 'react';
-import { View } from 'react-native';
-import { ThemedView } from '@/components/ThemedView';
-import { ThemedText } from '@/components/ThemedText';
+// import MapView, { PROVIDER_GOOGLE, MAP_TYPES, Marker } from 'react-native-maps';
+import { Text, StyleSheet, View } from 'react-native';
+import ThemedView from '@/components/ThemedView';
+import ThemedText from '@/components/ThemedText';
 import { Image as ExpoImage } from 'expo-image'
 
 const CAMERA_START = {
@@ -101,14 +100,14 @@ export default function Map() {
                 {POINTS_OF_INTEREST.map((marker, index) => (
                     <Marker title={marker.title} description={marker.description} key={index} coordinate={marker.coordinates}></Marker>
                 ))}
-            </MapView> */}
+            </MapView>
             <ThemedView className='absolute bottom-0 w-full rounded-t-3xl flex-col justify-start items-center p-4 gap-4'>
                 <ThemedText type='subtitle'>The STEM Center</ThemedText>
                 <ThemedText className='text-center'>The Skyline College STEM Center brings together academic and student support services for students taking science, technology, engineering and math courses.</ThemedText>
                 <View className='w-full h-32'>
                     <ExpoImage source={require('$/images/bobaSocial.jpg')} style={{ width: '100%', height: '100%' }} />
                 </View>
-            </ThemedView>
+            </ThemedView> */}
         </View>
 
     );

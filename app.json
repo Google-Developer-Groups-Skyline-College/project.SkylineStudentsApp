@@ -1,11 +1,18 @@
 {
   "expo": {
     "name": "Skyline Students",
+    "description": "The unofficial Skyline College Students app made by students, for students.",
     "slug": "skyline-students",
-    "version": "0.0.3E",
+    "owner": "gdgoc-skyline-college",
+    "version": "0.3.0E",
+    "platforms": ["android", "ios", "web"],
+    "githubUrl": "https://github.com/Google-Developer-Groups-Skyline-College/project.SkylineStudentsApp",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
-    "scheme": "myapp",
+    "notification": {
+      "color": "#FF000E"
+    },
+    "scheme": "skylinestudents",
     "userInterfaceStyle": "automatic",
     "splash": {
       "image": "./assets/images/splash.png",
@@ -20,7 +27,7 @@
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#FF000E"
       },
-      "package": "com.devalto.skylinestudents",
+      "package": "com.gdgocskyline.skylinestudentsapp",
       "config": {
         "googleMaps": {
           "apiKey": ""
@@ -36,7 +43,34 @@
       "expo-router",
       "expo-font",
       "expo-video",
-      "expo-secure-store"
+      "expo-secure-store",
+      "expo-audio",
+      [
+        "expo-splash-screen",
+        {
+          "backgroundColor": "#FF000E",
+          "image": "./assets/images/tspIcon.png",
+          "dark": {
+            "image": "./assets/images/tspIcon.png",
+            "backgroundColor": "#000000"
+          },
+          "imageWidth": 100,
+          "resizeMode": "contain"
+        }
+      ],
+      [
+        "expo-location",
+        {
+          "locationWhenInUsePermission": "Show current location on map."
+        }
+      ],
+      [
+        "@rnmapbox/maps",
+        {
+          "RNMapboxMapsDownloadToken": "",
+          "RNMapboxMapsVersion": "11.0.0"
+        }
+      ]
     ],
     "experiments": {
       "typedRoutes": true

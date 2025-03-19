@@ -7,7 +7,9 @@
 import { ImageSourcePropType } from 'react-native'
 import { Tags } from './Tags'
 
-interface ClubsProps {
+import { Searchables } from '@/components/SearchBar'
+
+export type ClubDetails = Searchables & {
   [key: string]: {
     description: string,
     backdropImg: ImageSourcePropType,
@@ -18,11 +20,11 @@ interface ClubsProps {
     discord: string,
     meetingLocation: string,
     meetingTime: string,
-    tags: Array<string>
+    joinLink: string,
   }
 }
 
-export const Clubs: ClubsProps = {
+export const Clubs: ClubDetails = {
   'GDGoC Skyline College': {
     description: `🌴 Welcome! We are a Google Developer Groups on Campus chapter and the official Computer Science Club at Skyline College. 🚀 We pioneer student growth in software development, through events like hackathons, and by building a strong platform for student growth in the large world of computer science.`,
     backdropImg: require('$/images/clubs/photos/computer_science_club/backdrop.png'),
@@ -33,6 +35,8 @@ export const Clubs: ClubsProps = {
     discord: 'https://discord.gg/z5P9kccwRh',
     meetingLocation: 'Building 7, Room 7-324',
     meetingTime: '1:10 PM - 2:00 PM, Fri',
+    joinLink: 'https://www.google.com',
+    aliases: ['google', 'chapter', 'campus'],
     tags: [Tags.STEM],
   },
   'Data Science Club': {
@@ -45,6 +49,7 @@ export const Clubs: ClubsProps = {
     discord: 'https://discord.gg/YcryEdk8H5',
     meetingLocation: 'Building 7, Room 7-324',
     meetingTime: '12:00 PM - 1:00 PM, Fri',
+    joinLink: 'https://www.google.com',
     tags: [Tags.STEM],
   },
   'Engineering Robotics Club': {
@@ -57,6 +62,7 @@ export const Clubs: ClubsProps = {
     discord: 'https://discord.gg/FJrrRHmsYC',
     meetingLocation: 'Building 7, The Fab Lab',
     meetingTime: '1:00 PM - 2:00 PMm, Fri',
+    joinLink: 'https://www.google.com',
     tags: [Tags.STEM],
   },
   'Photography Club': {
@@ -69,6 +75,8 @@ export const Clubs: ClubsProps = {
     discord: 'https://discord.gg/petKSpD8x2',
     meetingLocation: 'Building 1, Room 322',
     meetingTime: '3:00 PM - 5:00 PM, Thur',
+    joinLink: 'https://www.google.com',
+    aliases: ['video'],
     tags: [Tags.HOBBY],
   },
   'Filipino Student Union': {
@@ -81,6 +89,7 @@ export const Clubs: ClubsProps = {
     discord: 'https://discord.gg/ntJ4QHuT9t',
     meetingLocation: 'Building 4, The Intercultural Center',
     meetingTime: '3:00 PM - 5:00 PM',
+    joinLink: 'https://www.google.com',
     tags: [Tags.CULTURAL],
   },
   'Physics Astronomy Club': {
@@ -93,6 +102,7 @@ export const Clubs: ClubsProps = {
     discord: '',
     meetingLocation: 'Building 7, The Fab Lab',
     meetingTime: '3:00 PM - 5:00 PM',
+    joinLink: 'https://www.google.com',
     tags: [Tags.STEM],
   },
   'Honors Club': {
@@ -105,6 +115,7 @@ export const Clubs: ClubsProps = {
     discord: '',
     meetingLocation: 'Building 8, Room 8-324',
     meetingTime: '3:00 PM - 5:00 PM',
+    joinLink: 'https://www.google.com',
     tags: [],
   },
 }

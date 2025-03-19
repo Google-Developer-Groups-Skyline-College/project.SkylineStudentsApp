@@ -1,53 +1,47 @@
-import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
+import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native'
 
-import * as SplashScreen from 'expo-splash-screen';
-import { useFonts } from 'expo-font';
-import { Stack } from 'expo-router';
+import { useEffect } from 'react'
+import { configureReanimatedLogger, ReanimatedLogLevel } from 'react-native-reanimated'
+
+import * as SplashScreen from 'expo-splash-screen'
+import { useFonts } from 'expo-font'
+import { Stack } from 'expo-router'
 import { StatusBar } from 'expo-status-bar'
 
-import { useEffect } from 'react';
-import { configureReanimatedLogger, ReanimatedLogLevel } from 'react-native-reanimated';
-
-import { useColorScheme } from '@/hooks/useColorScheme';
+import { useColorScheme } from '@/hooks/useColorScheme'
 import '../../global.css'
 
 configureReanimatedLogger({
   level: ReanimatedLogLevel.warn,
   strict: false, // Reanimated runs in strict mode by default
-});
+})
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
-SplashScreen.preventAutoHideAsync();
+SplashScreen.preventAutoHideAsync()
 
 export default function RootLayout() {
-  const colorScheme = useColorScheme();
+  const colorScheme = useColorScheme()
   
   const [ loaded ] = useFonts({
-    SpaceMono: require('$/fonts/SpaceMono-Regular.ttf'),
-  });
+    SpaceMono: require('$/fonts/SpaceMono-Regular.ttf')
+  })
 
   useEffect(() => {
     if (loaded) {
-      SplashScreen.hideAsync();
+      SplashScreen.hideAsync()
     }
-  }, [loaded]);
+  }, [loaded])
 
-  if (!loaded) {
-    return null;
-  }
+  if (!loaded) return
 
-  // , headerBackground: () => <View className='bg-neutral-900/20 w-full h-full' />
-
-  return (
+  return ( 
       <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-          <StatusBar style='light'/>
-          <Stack screenOptions={{ headerTransparent: true }}>
-            <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-            <Stack.Screen name="clubsListing/index" options={{ title: 'Clubs Listing' }} />
-            {/* <Stack.Screen name="clubsListing/details/[clubName].tsx" options={{ title: 'Clubs Listing' }} /> */}
-            <Stack.Screen name="map/index" options={{ title: 'Map' }} />
-            <Stack.Screen name="+not-found" />
-          </Stack>
+        <Stack screenOptions={{ headerTransparent: true, headerTitle: '', headerTintColor: 'white' }}>
+          <Stack.Screen name="+not-found" />
+        </Stack>
+
+        {/* StatusBar must be after Stack components in order to work properly */}
+        <StatusBar style='light' />
       </ThemeProvider>
-  );
+  )
 }

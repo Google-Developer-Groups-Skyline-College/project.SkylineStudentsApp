@@ -105,6 +105,7 @@ export default function SearchPage() {
 
           - Lynn
         */}
+
         <View className="flex-row items-center space-x-4 gap-3">
           {/* Notification Icon*/}
           <View className="relative">
