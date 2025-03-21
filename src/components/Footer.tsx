@@ -1,12 +1,18 @@
 import { View, Text } from 'react-native'
+import ThemedLink from './ThemedLink'
 
-export default function() {
+export default function Footer() {
+
+    {/* TODO - Add a link to a google form for feedback */}
+
     return (
-        <View className='flex items-center'>
-            <Text className='text-yellow-600 font-bold'>— This is an app preview. —</Text>
+        <View className='flex items-center pt-4 pb-16'>
+            <Text className='text-yellow-700 font-bold'>— This is an app preview build. —</Text>
             <Text className='text-neutral-500'>Report bugs, request features, give feedback</Text>
-            <Text className='text-neutral-500'>to the <Text className='font-bold'>Computer Science Club.</Text></Text>
-            {/* TODO - Add a link to a google form for feedback */}
+            <Text className='text-neutral-500'>to <Text className='font-bold'>the GDGoC Skyline College Chapter.</Text></Text>
+            <ThemedLink href='/'>
+                <Text className='text-sky-700 font-bold'>Stuck? Press Here to Return Home</Text>
+            </ThemedLink>
         </View>
     )
 }

@@ -1,31 +1,42 @@
 {
   "expo": {
     "name": "Skyline Students",
+    "description": "The unofficial Skyline College Students app made by students, for students.",
     "slug": "skyline-students",
-    "version": "0.0.3E",
+    "owner": "gdgoc-skyline-college",
+    "version": "0.7.0",
+    "platforms": [
+      "android",
+      "ios",
+      "web"
+    ],
+    "githubUrl": "https://github.com/Google-Developer-Groups-Skyline-College/project.SkylineStudentsApp",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
-    "scheme": "myapp",
-    "userInterfaceStyle": "automatic",
-    "splash": {
-      "image": "./assets/images/splash.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#FF000E"
+    "notification": {
+      "color": "#FF000E"
     },
+    "scheme": "skylinestudents",
+    "userInterfaceStyle": "automatic",
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.gdgocskyline.skylinestudentsapp",
+      "infoPlist": {
+        "ITSAppUsesNonExemptEncryption": false
+      }
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#FF000E"
       },
-      "package": "com.devalto.skylinestudents",
-      "config": {
-        "googleMaps": {
-          "apiKey": ""
-        }
-      }
+      "package": "com.gdgocskyline.skylinestudentsapp",
+      "permissions": [
+        "android.permission.RECORD_AUDIO",
+        "android.permission.MODIFY_AUDIO_SETTINGS",
+        "android.permission.ACCESS_COARSE_LOCATION",
+        "android.permission.ACCESS_FINE_LOCATION"
+      ]
     },
     "web": {
       "bundler": "metro",
@@ -36,7 +47,34 @@
       "expo-router",
       "expo-font",
       "expo-video",
-      "expo-secure-store"
+      "expo-secure-store",
+      "expo-audio",
+      [
+        "expo-splash-screen",
+        {
+          "backgroundColor": "#FF000E",
+          "image": "./assets/images/monoIcon.png",
+          "dark": {
+            "image": "./assets/images/monoIcon.png",
+            "backgroundColor": "#000000"
+          },
+          "imageWidth": 100,
+          "resizeMode": "contain"
+        }
+      ],
+      [
+        "expo-location",
+        {
+          "locationWhenInUsePermission": "Show current location on map."
+        }
+      ],
+      [
+        "@rnmapbox/maps",
+        {
+          "RNMapboxMapsDownloadToken": "sk.eyJ1Ijoic2t5bGluZWdkZ29jIiwiYSI6ImNtOGlmdnN3eTAwNGYycnB0MHFwcWMxaWkifQ.Yu1AJxi9SRuGRYFLRK80kg",
+          "RNMapboxMapsVersion": "11.0.0"
+        }
+      ]
     ],
     "experiments": {
       "typedRoutes": true

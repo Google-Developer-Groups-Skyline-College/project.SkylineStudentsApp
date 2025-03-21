@@ -5,6 +5,10 @@
   },
   "build": {
     "development": {
+      "ios": {
+        "simulator": true
+      },
+      "node": "22.11.0",
       "developmentClient": true,
       "distribution": "internal"
     },

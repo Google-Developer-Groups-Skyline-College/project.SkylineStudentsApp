@@ -6,5 +6,11 @@ module.exports = {
   theme: {
     extend: {},
   },
+  // safelist: [
+  //   {
+  //     pattern:
+  //       /(text|background)-(red|blue|green|yellow|orange|purple|slate)-(0|50|100|200|300|400|500|600|700|800|900|950)/,
+  //   }
+  // ],
   plugins: [],
 }
