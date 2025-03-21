@@ -12,24 +12,22 @@ interface TagProps {
 
 const ICON_SIZE = 18
 
-export const Tags = {
-    STEM: 'STEM',
-    HOBBY: 'Hobby',
-    CULTURAL: 'Cultural'
-}
-
 export const TagDetails: TagProps = {
-    [Tags.STEM]: {
+    ['STEM']: {
         color: '#95DD31FF',
         icon: <MaterialCommunityIcons name='atom-variant' size={ICON_SIZE} color='white' />
     },
-    [Tags.HOBBY]: {
+    ['Hobby']: {
         color: '#FAA543FF',
         icon: <Entypo name='emoji-happy' size={ICON_SIZE} color='white' />
     },
-    [Tags.CULTURAL]: {
+    ['Cultural']: {
         color: '#8D59E6FF',
         icon: <MaterialCommunityIcons name='party-popper' size={ICON_SIZE} color='white' />
+    },
+    ['Unsorted']: {
+        color: '#4B4B4BFF',
+        icon: <MaterialCommunityIcons name='microscope' size={ICON_SIZE} color='white' />
     }
 }
 

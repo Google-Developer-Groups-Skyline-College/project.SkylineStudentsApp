@@ -1,33 +1,24 @@
-import { Text, type TextProps } from 'react-native';
+import { Text, type TextProps } from 'react-native'
 
-import { useColorScheme } from 'react-native';
+import { useThemeColor } from '@/hooks/useThemeColor'
 
-export type ThemedTextProps = TextProps & {
-  lightColor?: string;
-  darkColor?: string;
-  flipContrast?: boolean;
-  disableColorScheme?: boolean;
-  type?: 'default' | 'title' | 'defaultSemiBold' | 'subtitle' | 'link';
-};
-
-export function ThemedText({
-  lightColor,
-  darkColor,
-  className,
-  disableColorScheme,
-  type = 'default',
-  ...rest
-}: ThemedTextProps) {
-  return (
-    <Text
-      className={`${baseStyles[type]} ${(!disableColorScheme ? (useColorScheme() === 'dark' ? 'text-white' : 'text-black') : '')} ${className}`}
-      {...rest}
-    />
-  );
+export interface ThemedTextProps extends TextProps {
+  lightColor?: string
+  darkColor?: string
+  disableColorScheme?: boolean
+  type?: 'default' | 'title' | 'subtitle'
 }
 
 const baseStyles: { [type: string]: string } = {
-  default: 'text-base',
+  default: '',
   title: 'text-[32px] font-bold',
-  subtitle: 'text-[18px] font-bold',
+  subtitle: 'text-[18px] font-bold'
+}
+
+export default function ThemedText({ lightColor, darkColor, className, type = 'default', ...rest }: ThemedTextProps) {
+  const textColor = useThemeColor({ light: lightColor, dark: darkColor }, 'text')
+
+  return (
+    <Text className={`${baseStyles[type]} ${textColor} ${className}`} {...rest}/>
+  )
 }
