@@ -53,9 +53,9 @@
         "expo-splash-screen",
         {
           "backgroundColor": "#FF000E",
-          "image": "./assets/images/monoIcon.png",
+          "image": "./assets/images/mono-icon.png",
           "dark": {
-            "image": "./assets/images/monoIcon.png",
+            "image": "./assets/images/mono-icon.png",
             "backgroundColor": "#000000"
           },
           "imageWidth": 100,
