@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react"
 import {
   View,
   TextInput,
@@ -8,31 +8,32 @@ import {
   Alert,
   ScrollView,
   Text,
-} from "react-native";
-import { Ionicons } from "@expo/vector-icons";
+} from "react-native"
 
-import { SafeAreaView } from "react-native-safe-area-context";
+import { Ionicons } from "@expo/vector-icons"
 
-import Card from "@/components/ExploreComponents/ClubCardExplore";
-import NewsCard from "@/components/ExploreComponents/NewsCardExplore";
+import { SafeAreaView } from "react-native-safe-area-context"
+
+import Card from "@/components/ExploreComponents/ClubCardExplore"
+import NewsCard from "@/components/ExploreComponents/NewsCardExplore"
 
 export default function SearchPage() {
   const searchPressed = () => {
-    Alert.alert("Search activated!");
-  };
+    Alert.alert("Search activated!")
+  }
 
   // Texts useStates for the searchBars
-  const [text, setText] = useState("");
-  const [text1, setText1] = useState("");
-  const [text2, setText2] = useState("");
+  const [text, setText] = useState("")
+  const [text1, setText1] = useState("")
+  const [text2, setText2] = useState("")
 
   // These are useStates for whether the notification and the menu
   // icon are pressed or not
-  const [isNotificationFilled, setNotificationFilled] = useState(false);
-  const [isMenuFilled, setMenuFilled] = useState(false);
+  const [isNotificationFilled, setNotificationFilled] = useState(false)
+  const [isMenuFilled, setMenuFilled] = useState(false)
 
   // This is the useState for showing or hiding the smaller search bars
-  const [isOptionsVisible, setOptionsVisible] = useState(false);
+  const [isOptionsVisible, setOptionsVisible] = useState(false)
 
   {
     /*
@@ -42,11 +43,11 @@ export default function SearchPage() {
     - Lynn
   */
   }
-  const [notificationCount, setNotificationCount] = useState(2);
+  const [notificationCount, setNotificationCount] = useState(2)
 
   // useRef for animation
-  const heightAnimation = useRef(new Animated.Value(0)).current;
-  const opacityAnimation = useRef(new Animated.Value(0)).current;
+  const heightAnimation = useRef(new Animated.Value(0)).current
+  const opacityAnimation = useRef(new Animated.Value(0)).current
 
   // useEffect for transition animation
   useEffect(() => {
@@ -62,7 +63,7 @@ export default function SearchPage() {
           duration: 400,
           useNativeDriver: false,
         }),
-      ]).start();
+      ]).start()
     } else {
       Animated.parallel([
         Animated.timing(heightAnimation, {
@@ -75,9 +76,9 @@ export default function SearchPage() {
           duration: 350,
           useNativeDriver: false,
         }),
-      ]).start();
+      ]).start()
     }
-  }, [isOptionsVisible]);
+  }, [isOptionsVisible])
 
   return (
     <SafeAreaView className="flex-1 justify-center px-4">
@@ -86,7 +87,7 @@ export default function SearchPage() {
           and the search text */}
         <View className="flex-row gap-3">
           <Image
-            source={require("$/images/tspIcon.png")}
+            source={require("$/images/mono-icon.png")}
             className="w-8 h-8"
           />
           <Text className=" text-xl font-bold text-slate-100">Search</Text>
@@ -105,6 +106,7 @@ export default function SearchPage() {
 
           - Lynn
         */}
+
         <View className="flex-row items-center space-x-4 gap-3">
           {/* Notification Icon*/}
           <View className="relative">
@@ -262,21 +264,21 @@ export default function SearchPage() {
                 <Card
                   type="Club"
                   field="Data Science"
-                  image={require("$/images/ClubImagesForExplore/genericDEI(1).jpg")}
+                  image={require("$/images/decoratives/boba_social.webp")}
                   title="Data Science Club"
                   description="Hello, this is the Data Science Club available at Skyline College. We analyze and visualize data and derive conclusions from those."
                 />
                 <Card
                   type="Club"
                   field="Math"
-                  image={require("$/images/ClubImagesForExplore/genericDEI(2).jpg")}
+                  image={require("$/images/decoratives/club_rush.webp")}
                   title="Math Club"
                   description="Hello, come join the Math Club at Skyline to explore mathematical concepts, and engage in problem-solving activities! Everyone is welcome!"
                 />
                 <Card
                   type="Club"
                   field="Engineering"
-                  image={require("$/images/ClubImagesForExplore/genericDEI(3).jpeg")}
+                  image={require("$/images/decoratives/boba_social.webp")}
                   title="Engineering & Robotics Club"
                   description="Hello, this is the Engineering & Robotics Club at Skyline College. Join the Engineering & Robotics Club to build exciting projects, and collaborate with peers."
                 />
@@ -297,7 +299,7 @@ export default function SearchPage() {
               <NewsCard
                 title="International Student Club’s Successful Cultural Exchange Day"
                 date="October 11, 2024"
-                image={require("$/images/NewsImagesForExplore/testNews.png")}
+                image={require("$/images/image.missing.webp")}
                 desc="On Friday, September 27, 2024, the International Student Club (ISC)
               hosted a cultural exchange event that was formally open to all students and
               staff. This was their third general meeting for the 2024-2025 academic year,
@@ -308,7 +310,7 @@ export default function SearchPage() {
               <NewsCard
                 title="International Student Club’s Successful Cultural Exchange Day"
                 date="October 11, 2024"
-                image={require("$/images/NewsImagesForExplore/testNews.png")}
+                image={require("$/images/image.missing.webp")}
                 desc="On Friday, September 27, 2024, the International Student Club (ISC) hosted a cultural exchange event that was formally open to all students and
               staff. This was their third general meeting for the 2024-2025 academic year,
               filled with enjoyable activities and a diverse map-pinning game featuring various
@@ -320,5 +322,5 @@ export default function SearchPage() {
         </View>
       </ScrollView>
     </SafeAreaView>
-  );
+  )
 }
