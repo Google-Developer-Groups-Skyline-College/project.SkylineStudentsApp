@@ -99,5 +99,5 @@ export default function Demo() {
             {/* Footer as described in components/Footer.tsx */}
             {/* <Footer /> */}
         </View>
-    );
+    )
 }

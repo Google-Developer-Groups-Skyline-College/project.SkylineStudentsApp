@@ -4,7 +4,6 @@ import Animated, { useSharedValue, useAnimatedStyle, withSpring} from 'react-nat
 
 import { LinearGradient } from 'expo-linear-gradient'
 import { StatusBar } from 'expo-status-bar'
-import { BlurView } from 'expo-blur'
 
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons'
 import MaterialIcons from '@expo/vector-icons/MaterialIcons'
@@ -369,5 +368,5 @@ export default function HomeScreen() {
 
           </ThemedView>
         </ScrollView>
-  );
-} 
+  )
+}

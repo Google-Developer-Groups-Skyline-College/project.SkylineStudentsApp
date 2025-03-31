@@ -5,9 +5,9 @@ import { Link, RelativePathString } from 'expo-router'
 import { useThemeColor } from '@/hooks/useThemeColor'
 
 export interface LinkWrapProps extends PressableProps {
-  lightColor?: string;
-  darkColor?: string;
-  href: string | RelativePathString;
+  lightColor?: string
+  darkColor?: string
+  href: string | RelativePathString
 }
 
 export default function LinkWrap({ lightColor, darkColor, className, children, href, ...otherProps }: LinkWrapProps) {

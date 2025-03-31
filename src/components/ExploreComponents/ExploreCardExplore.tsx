@@ -1,6 +1,6 @@
-import React from 'react';
-import { View, Text, TouchableOpacity, Linking, Image } from 'react-native';
-import { SkylineEvent } from '@/utils/fetchEvents';
+import React from 'react'
+import { View, Text, TouchableOpacity, Linking, Image } from 'react-native'
+import { SkylineEvent } from '@/utils/fetchEvents'
 
 const EventCard: React.FC<SkylineEvent> = ({ 
   title,
@@ -14,15 +14,15 @@ const EventCard: React.FC<SkylineEvent> = ({
 }) => {
   const handlePress = () => {
     if (link) {
-      Linking.openURL(link);
+      Linking.openURL(link)
     }
-  };
+  }
 
   const getHighQualityImage = (imageUrl: string) => {
-    if (!imageUrl) return undefined;
-    const baseUrl = imageUrl.split('?')[0];
-    return `${baseUrl}?w=800&h=800&fit=crop&auto=format&q=90`;
-  };
+    if (!imageUrl) return undefined
+    const baseUrl = imageUrl.split('?')[0]
+    return `${baseUrl}?w=800&h=800&fit=crop&auto=format&q=90`
+  }
 
   return (
     <TouchableOpacity 
@@ -61,7 +61,7 @@ const EventCard: React.FC<SkylineEvent> = ({
         </View>
       )}
     </TouchableOpacity>
-  );
-};
+  )
+}
 
-export default EventCard; 
+export default EventCard 

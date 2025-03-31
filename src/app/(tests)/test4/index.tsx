@@ -1,17 +1,17 @@
-import { useEvent } from 'expo';
-import { useVideoPlayer, VideoView } from 'expo-video';
-import { StyleSheet, View, Button } from 'react-native';
+import { useEvent } from 'expo'
+import { useVideoPlayer, VideoView } from 'expo-video'
+import { StyleSheet, View, Button } from 'react-native'
 
 const videoSource =
-  'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4';
+  'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4'
 
 export default function VideoScreen() {
   const player = useVideoPlayer(videoSource, player => {
-    player.loop = true;
-    player.play();
-  });
+    player.loop = true
+    player.play()
+  })
 
-  const { isPlaying } = useEvent(player, 'playingChange', { isPlaying: player.playing });
+  const { isPlaying } = useEvent(player, 'playingChange', { isPlaying: player.playing })
 
   return (
     <View style={styles.contentContainer}>
@@ -21,15 +21,15 @@ export default function VideoScreen() {
           title={isPlaying ? 'Pause' : 'Play'}
           onPress={() => {
             if (isPlaying) {
-              player.pause();
+              player.pause()
             } else {
-              player.play();
+              player.play()
             }
           }}
         />
       </View>
     </View>
-  );
+  )
 }
 
 const styles = StyleSheet.create({
@@ -47,4 +47,4 @@ const styles = StyleSheet.create({
   controlsContainer: {
     padding: 10,
   },
-});
+})

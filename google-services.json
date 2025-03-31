@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "258453681321",
+    "project_id": "skylinestudentsapp",
+    "storage_bucket": "skylinestudentsapp.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:258453681321:android:80260be9898d5a26cd25b8",
+        "android_client_info": {
+          "package_name": "com.gdgocskyline.skylinestudentsapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCDsONOOupTdMeFd6CeC2EjMQrimf9gH4U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
