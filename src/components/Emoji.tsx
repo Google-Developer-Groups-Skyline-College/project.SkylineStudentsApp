@@ -1,10 +1,27 @@
-import { View } from 'react-native'
-import Icon, { iconNames } from 'react-native-ico-emojione-emojis'
+import React, { memo } from 'react'
+import Image from './Image'
 
-export function Emoji({ name, size = 20 }: { name: iconNames, size?: number }) {
-    return (
-        <View className='flex items-center justify-center'>
-            <Icon name={name} height={size} width={size} />
-        </View>
-    )
+const CDN_ENDPOINT = 'https://cdnjs.cloudflare.com/ajax/libs/twemoji/15.1.0/72x72/'
+
+export interface EmojiProps {
+  value: string
+  size?: number
 }
+
+function Emoji({ value, size = 16 }: EmojiProps) {
+  const codePoint = value.codePointAt(0)
+
+  if (!codePoint)
+    return <></>
+
+  return (
+    <Image
+      source={`${CDN_ENDPOINT}${codePoint.toString(16)}.png`}
+      height={size}
+      width={size}
+      className='my-auto'
+    />
+  )
+}
+
+export default memo(Emoji)

@@ -56,8 +56,8 @@ export default function MediaModal({ content, ...otherProps }: MediaModalProps) 
             <View className='w-full aspect-video'>
                 <Image
                     source={content.source}
-                    blurRadius={4}
-                    className='absolute w-full h-full rounded-xl opacity-75'
+                    blurRadius={8}
+                    className='absolute w-full h-full rounded-xl'
                 />
                 <Image
                     source={content.source}

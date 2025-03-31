@@ -16,8 +16,10 @@ import ThemedView from '@/components/ThemedView'
 import { UserConfig } from '@/constants/UserConfig'
 import Footer from '@/components/Footer'
 // import Image from '@/components/Image'
-import { Emoji } from '@/components/Emoji'
 import { Ionicons } from '@expo/vector-icons'
+
+import Emoji from '@/components/Emoji'
+
 
 const FORECAST_API_URL = 'https://api.open-meteo.com/v1/forecast?latitude=37.6275&longitude=-122.4711&current=temperature_2m,weather_code&temperature_unit=fahrenheit&wind_speed_unit=ms&precipitation_unit=inch&timezone=America%2FLos_Angeles&forecast_days=1'
 
@@ -102,7 +104,7 @@ export default function HomeScreen() {
 
             {/* <ThemedText type='subtitle' className='border-b-[1px] border-yellow-500 pb-2'>🎉 Today's Campus Events</ThemedText> */}
             <View className='flex flex-row gap-x-2'>
-              <Emoji name='party-popper' />
+              <Emoji value='🎉' />
               <ThemedText type='subtitle'>Campus Insights</ThemedText>
             </View>
 
@@ -160,18 +162,18 @@ export default function HomeScreen() {
 
 
               <LinkWrap href='https://www.theskylineview.com' className='w-full h-36 rounded-xl overflow-hidden border-2' lightColor='border-[#CC4040]/50' darkColor='border-[#CC4040]'>
-                <Image source={require('$/images/the-skyline-view-banner.webp')} className='w-full h-full'></Image>
+                <Image source={require('$/images/decoratives/smccd-services/the-skyline-view-banner.webp')} className='w-full h-full'></Image>
 
                 <LinearGradient className='absolute flex w-full h-full justify-center items-center opacity-75'
                   colors={['#420000FF', '#FF383833', '#FF383800']} start={{ x: 0.5, y: 0.7 }} end={{ x: 0.5, y: 0 }}>
                 </LinearGradient>
                 <View className='absolute bottom-1 px-2 w-full'>
-                  <Image source={require('$/images/the-skyline-view-logo.webp')} resizeMode='contain' className='w-full h-16' />
+                  <Image source={require('$/images/decoratives/smccd-services/the-skyline-view-logo.webp')} resizeMode='contain' className='w-full h-16' />
                 </View>
               </LinkWrap>
 
               <LinkWrap href='/map' className='w-full h-36 rounded-xl overflow-hidden border-2' lightColor='border-[#31C7DB]/50' darkColor='border-[#31C7DB]'>
-                <Image source={require('$/images/map-banner.webp')} className='w-full h-full opacity-95' />
+                <Image source={require('$/images/map-banner.webp')} className='w-full h-full' />
 
                 <LinearGradient className='absolute flex w-full h-full justify-center items-center opacity-75'
                   colors={['#002F42FF', '#2850D356']} start={{ x: 0.5, y: 0.9 }} end={{ x: 0.5, y: 0.4 }}>
@@ -193,23 +195,23 @@ export default function HomeScreen() {
                 </View>
               </LinkWrap>
 
-              <LinkWrap href='https://phx-ban-apps.smccd.edu/StudentSelfService/ssb/studentCommonDashboard' className='w-full h-36 rounded-xl overflow-hidden border-2' lightColor='border-[#003781]/50' darkColor='border-[#003781]'>
+              <LinkWrap href='https://phx-ban-apps.smccd.edu/StudentSelfService/ssb/studentCommonDashboard' className='w-full h-36 rounded-xl overflow-hidden border-2' lightColor='border-[#2F89FFFF]/50' darkColor='border-[#2F89FFFF]'>
                 <Image source={require('$/images/decoratives/smccd-services/websmart-banner.webp')} className='absolute w-full h-full' />
 
                 <LinearGradient className='absolute flex w-full h-full justify-center items-center opacity-75'
-                  colors={['#003881FF', '#6A8DFF6B', '#00000000']} start={{ x: 0.5, y: 0.9 }} end={{ x: 0.5, y: 0.4 }}>
+                  colors={['#003881FF', '#6A8DFF6B', 'transparent']} start={{ x: 0.5, y: 0.9 }} end={{ x: 0.5, y: 0.4 }}>
                 </LinearGradient>
 
                 <View className='absolute bottom-0 px-2 w-full'>
-                  <Image source={require('$/images/decoratives/smccd-services/websmart-logo2.webp')} resizeMode='contain' className='w-full h-24' />
+                  <Image source={require('$/images/decoratives/smccd-services/websmart-logo.webp')} resizeMode='contain' className='w-full h-24' />
                 </View>
               </LinkWrap>
 
-              <LinkWrap href='https://phx-ban-apps.smccd.edu/StudentRegistrationSsb/ssb/term/termSelection?mode=search' className='w-full h-36 rounded-xl overflow-hidden border-2' lightColor='border-[#00653d]/50' darkColor='border-[#00653d]'>
+              <LinkWrap href='https://phx-ban-apps.smccd.edu/StudentRegistrationSsb/ssb/term/termSelection?mode=search' className='w-full h-36 rounded-xl overflow-hidden border-2' lightColor='border-[#4BFCB5AD]/50' darkColor='border-[#4BFCB5AD]'>
                 <Image source={require('$/images/decoratives/smccd-services/webschedule-banner.webp')} className='absolute w-full h-full' />
 
                 <LinearGradient className='absolute flex w-full h-full justify-center items-center opacity-75'
-                  colors={['#024B2EFF', '#4BFCB5AD', '#00000000']} start={{ x: 0.5, y: 0.9 }} end={{ x: 0.5, y: 0.4 }}>
+                  colors={['#024B2EFF', '#4BFCB5AD', 'transparent']} start={{ x: 0.5, y: 0.9 }} end={{ x: 0.5, y: 0.4 }}>
                 </LinearGradient>
 
                 <View className='absolute bottom-0 px-2 w-full'>
@@ -217,11 +219,11 @@ export default function HomeScreen() {
                 </View>
               </LinkWrap>
 
-              <LinkWrap href='https://phx-degreeworks.smccd.edu/ResponsiveDashboard/plans' className='w-full h-36 rounded-xl overflow-hidden border-2' lightColor='border-[#58bad6]/50' darkColor='border-[#58bad6]'>
+              <LinkWrap href='https://phx-degreeworks.smccd.edu/ResponsiveDashboard/plans' className='w-full h-36 rounded-xl overflow-hidden border-2' lightColor='border-[#31C7DB]/50' darkColor='border-[#31C7DB]'>
                 <Image source={require('$/images/decoratives/smccd-services/degreeworks-banner.webp')} className='absolute w-full h-full' />
 
                 <LinearGradient className='absolute flex w-full h-full justify-center items-center opacity-75'
-                  colors={['#006885FF', '#67FAFFA1', '#00000000']} start={{ x: 0.5, y: 0.9 }} end={{ x: 0.5, y: 0.4 }}>
+                  colors={['#006885FF', '#67FAFFA1', 'transparent']} start={{ x: 0.5, y: 0.9 }} end={{ x: 0.5, y: 0.4 }}>
                 </LinearGradient>
 
                 <View className='absolute bottom-0 px-2 w-full'>
@@ -233,7 +235,7 @@ export default function HomeScreen() {
                 <Image source={require('$/images/decoratives/smccd-services/student-success-link-banner.webp')} className='absolute w-full h-full' />
 
                 <LinearGradient className='absolute flex w-full h-full justify-center items-center opacity-75'
-                  colors={['#012A41FF', '#1C90CEFF', '#00000000']} start={{ x: 0.5, y: 0.9 }} end={{ x: 0.5, y: 0.4 }}>
+                  colors={['#012A41FF', '#1C90CEFF', 'transparent']} start={{ x: 0.5, y: 0.9 }} end={{ x: 0.5, y: 0.4 }}>
                 </LinearGradient>
 
                 <View className='absolute bottom-2 px-2 w-full'>
@@ -245,7 +247,7 @@ export default function HomeScreen() {
                 <Image source={require('$/images/decoratives/smccd-services/accudemia-banner.webp')} className='absolute w-full h-full' />
 
                 <LinearGradient className='absolute flex w-full h-full justify-center items-center opacity-75'
-                  colors={['#FFFFFFFF', '#A4E5FFFF', '#00000000']} start={{ x: 0.5, y: 0.9 }} end={{ x: 0.5, y: 0.4 }}>
+                  colors={['#57C4FFFF', '#FFF', 'transparent']} start={{ x: 0.5, y: 1 }} end={{ x: 0.5, y: 0.4 }}>
                 </LinearGradient>
 
                 <View className='absolute bottom-2 px-2 w-full'>
@@ -253,18 +255,19 @@ export default function HomeScreen() {
                 </View>
               </LinkWrap>
               
-              <LinkWrap href='https://smccd.edu/alertme/' className='w-full h-36 rounded-xl overflow-hidden border-2' lightColor='border-[#CC4040]/50' darkColor='border-[#CC4040]'>
+              <LinkWrap href='https://smccd.edu/alertme/' className='w-full h-36 rounded-xl overflow-hidden border-2' lightColor='border-[#FF2929]/50' darkColor='border-[#FF2929]'>
 
                 <LinearGradient className='absolute flex w-full h-full justify-center items-center opacity-75'
-                  colors={['#CC4040', '#FF8F8FFF']} start={{ x: 0.5, y: 1 }} end={{ x: 0.5, y: 0 }}>
+                  colors={['#FF4141', '#FF0000']} start={{ x: 0.5, y: 1 }} end={{ x: 0.5, y: 0 }}>
+                  <MaterialCommunityIcons name='message-alert' color='#FFFFFF38' size={128} className='absolute' />
                 </LinearGradient>
 
-                <View className='flex flex-row justify-between items-center w-full h-full px-4'>
+                <View className='flex flex-row justify-between items-center w-full h-full px-6'>
                     <View>
-                      <ThemedText type='title' className='leading-none'>ALERTME</ThemedText>
-                      <ThemedText className='leading-none'>District Public Safety Alert Service</ThemedText>
+                      <ThemedText type='title' className='text-white leading-none'>ALERTME</ThemedText>
+                      <Text className='text-white leading-none'>District Public Safety Alert Service</Text>
                     </View>
-                    <MaterialCommunityIcons name='message-alert' color='white' size={64} />
+                    <MaterialIcons name='smartphone' color='white' size={64} />
                 </View>
 
               </LinkWrap>
@@ -299,7 +302,7 @@ export default function HomeScreen() {
             </View> */}
 
             <View className='flex flex-row gap-x-2'>
-              <Emoji name='magnifying-glass-tilted-right' />
+              <Emoji value='🔎' />
               <ThemedText type='subtitle'>Your Campus Insights</ThemedText>
             </View>
 
@@ -320,7 +323,7 @@ export default function HomeScreen() {
                 <FontAwesome6 name='boxes-stacked' size={32} color='#FFF' />
                 <Text className='text-lg text-white' style={{fontFamily: 'Inter_700Bold'}}>Resources</Text>
               </LinkWrap>
-              <LinkWrap href='/notifications' lightColor='bg-[#BD3838] border-[#BD3838]/50' darkColor='bg-[#BD3838]/50 border-[#BD3838]' className='flex justify-center items-center gap-1 w-[49%] h-28 p-2 rounded-2xl border-2 overflow-hidden'>
+              <LinkWrap href='/notifications' lightColor='bg-[#C44949] border-[#C44949]/50' darkColor='bg-[#C44949]/50 border-[#C44949]' className='flex justify-center items-center gap-1 w-[49%] h-28 p-2 rounded-2xl border-2 overflow-hidden'>
                 <Ionicons name='notifications' size={128} color='#FFFFFF10' className='absolute' />
                 <Ionicons name='notifications' size={32} color='#FFF' />
                 <Text className='text-lg text-white' style={{fontFamily: 'Inter_700Bold'}}>Notifications</Text>
@@ -332,7 +335,7 @@ export default function HomeScreen() {
             <View className='h-56' />
 
             <View className='flex flex-row gap-x-2'>
-              <Emoji name='warning' />
+              <Emoji value='⚠️' />
               <ThemedText type='subtitle'>The Experimental Pages</ThemedText>
             </View>
 
