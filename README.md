@@ -1,10 +1,14 @@
 # 📊 The Skyline College Students App
 
-This is primarily a React Native project, built with Nativewind/Tailwind CSS, created by students, for students.
+This is primarily a Expo project, built with React Native and nativewind/Tailwind CSS.
+
+The 📲 Skyline Students App is a multi-platform app made for students, made by students. 
+
+🏆 The main goal of the app is to serve as a personal hub that centralizes all the different online web services, portals, resources, events, and basic information that a typical Skyline student may interact with day-to-day.
 
 This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
 
-![Alt](https://repobeats.axiom.co/api/embed/fc3e0b6931ae89004ecece65f01d3db1879fa082.svg "Repobeats analytics image")
+<img src='/docs/assets/demo.png'>
 
 ---
 
@@ -17,7 +21,7 @@ This is an [Expo](https://expo.dev) project created with [`create-expo-app`](htt
 
 ### Repository Contribution Activity
 
-![Alt](https://repobeats.axiom.co/api/embed/647b41049a0a9600b906e83dd7b4819c35b95a3a.svg "Repobeats analytics image")
+![Alt](https://repobeats.axiom.co/api/embed/fc3e0b6931ae89004ecece65f01d3db1879fa082.svg "Repobeats analytics image")
 
 # 🔰
 ## Quick Setup / Getting Started
