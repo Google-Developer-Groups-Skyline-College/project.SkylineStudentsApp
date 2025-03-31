@@ -1,35 +1,32 @@
-import React from 'react';
+import React from 'react'
+import { Tabs } from 'expo-router'
 
-import { Tabs } from 'expo-router';
+import { TabBarIcon } from '@/components/navigation/TabBarIcon'
+import ThemedView from '@/components/ThemedView'
 
-import { View } from 'react-native';
+import { useColorScheme } from '@/hooks/useColorScheme'
 
-import { TabBarIcon } from '@/components/navigation/TabBarIcon';
-import { Colors } from '@/constants/Colors';
-import { useColorScheme } from '@/hooks/useColorScheme';
+import { Colors } from '@/constants/Colors'
 
 export default function TabLayout() {
-  const colorScheme = useColorScheme();
+  const colorScheme = useColorScheme()
 
   return (
     <Tabs
-      sceneContainerStyle={{backgroundColor: 'transparent'}}
       screenOptions={{
         tabBarStyle: {
           position: 'absolute',
-          backgroundColor: 'transparent',
+          backgroundColor: '#00000000',
+          borderTopWidth: 0
         },
         tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
-        headerShown: false,
-        // headerTransparent: true,
-        // headerTitleAlign: 'center',
-        // headerStatusBarHeight: 20,
-        tabBarBackground: () => <View className='bg-neutral-900/95 w-full h-full'></View>
+        tabBarBackground: () => <ThemedView className='w-full h-full rounded-t-3xl shadow-lg shadow-black' />,
+        headerShown: false
       }}>
       <Tabs.Screen
         name='index'
         options={{
-          title: 'Home',
+          title: 'My Home',
           tabBarIcon: ({ color, focused }) => (
             <TabBarIcon name={focused ? 'home' : 'home-outline'} color={color} />
           ),
@@ -45,23 +42,14 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
-        name='profile'
+        name='preferences'
         options={{
-          title: 'Profile',
+          title: 'Preferences',
           tabBarIcon: ({ color, focused }) => (
             <TabBarIcon name={focused ? 'person-circle' : 'person-circle-outline'} color={color} />
           ),
         }}
       />
-      {/* <Tabs.Screen
-        name='map'
-        options={{
-          title: 'Map',
-          tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon name={focused ? 'map' : 'map-outline'} color={color} />
-          ),
-        }}
-      /> */}
     </Tabs>
-  );
+  )
 }
