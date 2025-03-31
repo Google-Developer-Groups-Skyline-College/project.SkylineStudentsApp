@@ -144,11 +144,11 @@ export default function HomeScreen() {
 
                   <View className='absolute bottom-1 px-2'>
                     <View className='flex flex-row items-center gap-x-2'>
-                    <FontAwesome6 name='bus' color='white' size={16} />
-                    <Text
-                      className='text-white text-xl leading-tight'
-                      style={{fontFamily: 'Inter_700Bold'}}
-                    >Transit Center</Text>
+                      <FontAwesome6 name='bus' color='white' size={16} />
+                      <Text
+                        className='text-white text-xl leading-tight'
+                        style={{fontFamily: 'Inter_700Bold'}}
+                      >Transit Center</Text>
                     </View>
                     <Text
                       className='text-neutral-300 text-sm leading-tight'
