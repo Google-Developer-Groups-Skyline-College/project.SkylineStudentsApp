@@ -144,11 +144,11 @@ export default function HomeScreen() {
 
                   <View className='absolute bottom-1 px-2'>
                     <View className='flex flex-row items-center gap-x-2'>
-                    <FontAwesome6 name='bus' color='white' size={16} />
-                    <Text
-                      className='text-white text-xl leading-tight'
-                      style={{fontFamily: 'Inter_700Bold'}}
-                    >Transit Center</Text>
+                      <FontAwesome6 name='bus' color='white' size={16} />
+                      <Text
+                        className='text-white text-xl leading-tight'
+                        style={{fontFamily: 'Inter_700Bold'}}
+                      >Transit Center</Text>
                     </View>
                     <Text
                       className='text-neutral-300 text-sm leading-tight'
@@ -168,7 +168,6 @@ export default function HomeScreen() {
                 </LinearGradient>
                 <View className='absolute bottom-1 px-2 w-full'>
                   <Image source={require('$/images/the-skyline-view-logo.webp')} resizeMode='contain' className='w-full h-16' />
-                  {/* <Image source={require('$/images/test.png')} contentFit={'contain'} className='w-full h-16' /> */}
                 </View>
               </LinkWrap>
 
@@ -195,8 +194,83 @@ export default function HomeScreen() {
                 </View>
               </LinkWrap>
 
+              <LinkWrap href='https://phx-ban-apps.smccd.edu/StudentSelfService/ssb/studentCommonDashboard' className='w-full h-36 rounded-xl overflow-hidden border-2' lightColor='border-[#003781]/50' darkColor='border-[#003781]'>
+                <Image source={require('$/images/decoratives/smccd-services/websmart-banner.webp')} className='absolute w-full h-full' />
 
-              <View className='w-full h-32 rounded-xl overflow-hidden'>
+                <LinearGradient className='absolute flex w-full h-full justify-center items-center opacity-75'
+                  colors={['#003881FF', '#6A8DFF6B', '#00000000']} start={{ x: 0.5, y: 0.9 }} end={{ x: 0.5, y: 0.4 }}>
+                </LinearGradient>
+
+                <View className='absolute bottom-0 px-2 w-full'>
+                  <Image source={require('$/images/decoratives/smccd-services/websmart-logo2.webp')} resizeMode='contain' className='w-full h-24' />
+                </View>
+              </LinkWrap>
+
+              <LinkWrap href='https://phx-ban-apps.smccd.edu/StudentRegistrationSsb/ssb/term/termSelection?mode=search' className='w-full h-36 rounded-xl overflow-hidden border-2' lightColor='border-[#00653d]/50' darkColor='border-[#00653d]'>
+                <Image source={require('$/images/decoratives/smccd-services/webschedule-banner.webp')} className='absolute w-full h-full' />
+
+                <LinearGradient className='absolute flex w-full h-full justify-center items-center opacity-75'
+                  colors={['#024B2EFF', '#4BFCB5AD', '#00000000']} start={{ x: 0.5, y: 0.9 }} end={{ x: 0.5, y: 0.4 }}>
+                </LinearGradient>
+
+                <View className='absolute bottom-0 px-2 w-full'>
+                  <Image source={require('$/images/decoratives/smccd-services/webschedule-logo.webp')} resizeMode='contain' className='w-full h-24' />
+                </View>
+              </LinkWrap>
+
+              <LinkWrap href='https://phx-degreeworks.smccd.edu/ResponsiveDashboard/plans' className='w-full h-36 rounded-xl overflow-hidden border-2' lightColor='border-[#58bad6]/50' darkColor='border-[#58bad6]'>
+                <Image source={require('$/images/decoratives/smccd-services/degreeworks-banner.webp')} className='absolute w-full h-full' />
+
+                <LinearGradient className='absolute flex w-full h-full justify-center items-center opacity-75'
+                  colors={['#006885FF', '#67FAFFA1', '#00000000']} start={{ x: 0.5, y: 0.9 }} end={{ x: 0.5, y: 0.4 }}>
+                </LinearGradient>
+
+                <View className='absolute bottom-0 px-2 w-full'>
+                  <Image source={require('$/images/decoratives/smccd-services/degreeworks-logo.webp')} resizeMode='contain' className='w-full h-24' />
+                </View>
+              </LinkWrap>
+
+              <LinkWrap href='https://smccd.my.site.com/SMCCDStudentAdvising/s/' className='w-full h-36 rounded-xl overflow-hidden border-2' lightColor='border-[#1c90ce]/50' darkColor='border-[#1c90ce]'>
+                <Image source={require('$/images/decoratives/smccd-services/student-success-link-banner.webp')} className='absolute w-full h-full' />
+
+                <LinearGradient className='absolute flex w-full h-full justify-center items-center opacity-75'
+                  colors={['#012A41FF', '#1C90CEFF', '#00000000']} start={{ x: 0.5, y: 0.9 }} end={{ x: 0.5, y: 0.4 }}>
+                </LinearGradient>
+
+                <View className='absolute bottom-2 px-2 w-full'>
+                  <Image source={require('$/images/decoratives/smccd-services/student-success-link-logo.webp')} resizeMode='contain' className='w-full h-16' />
+                </View>
+              </LinkWrap>
+
+              <LinkWrap href='https://smccd.my.site.com/SMCCDStudentAdvising/s/' className='w-full h-36 rounded-xl overflow-hidden border-2' lightColor='border-[#1c90ce]/50' darkColor='border-[#1c90ce]'>
+                <Image source={require('$/images/decoratives/smccd-services/accudemia-banner.webp')} className='absolute w-full h-full' />
+
+                <LinearGradient className='absolute flex w-full h-full justify-center items-center opacity-75'
+                  colors={['#FFFFFFFF', '#A4E5FFFF', '#00000000']} start={{ x: 0.5, y: 0.9 }} end={{ x: 0.5, y: 0.4 }}>
+                </LinearGradient>
+
+                <View className='absolute bottom-2 px-2 w-full'>
+                  <Image source={require('$/images/decoratives/smccd-services/accudemia-logo.webp')} resizeMode='contain' className='w-full h-24' />
+                </View>
+              </LinkWrap>
+              
+              <LinkWrap href='https://smccd.edu/alertme/' className='w-full h-36 rounded-xl overflow-hidden border-2' lightColor='border-[#CC4040]/50' darkColor='border-[#CC4040]'>
+
+                <LinearGradient className='absolute flex w-full h-full justify-center items-center opacity-75'
+                  colors={['#CC4040', '#FF8F8FFF']} start={{ x: 0.5, y: 1 }} end={{ x: 0.5, y: 0 }}>
+                </LinearGradient>
+
+                <View className='flex flex-row justify-between items-center w-full h-full px-4'>
+                    <View>
+                      <ThemedText type='title' className='leading-none'>ALERTME</ThemedText>
+                      <ThemedText className='leading-none'>District Public Safety Alert Service</ThemedText>
+                    </View>
+                    <MaterialCommunityIcons name='message-alert' color='white' size={64} />
+                </View>
+
+              </LinkWrap>
+
+              {/* <View className='w-full h-32 rounded-xl overflow-hidden'>
                 <Image source={require('$/images/decoratives/boba_social.webp')} className='w-full h-full object-cover'/>
 
                 <BlurView className='absolute w-full bottom-0 py-1' intensity={50} experimentalBlurMethod='none' tint='dark'>
@@ -206,7 +280,7 @@ export default function HomeScreen() {
                     <Text className='text-[12.5px] text-green-100 font-bold'>{'3:00 PM - 4:00 PM'} ⏰</Text>
                   </View>
                 </BlurView>
-              </View>
+              </View> */}
 
             </View>
 
