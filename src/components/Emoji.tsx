@@ -11,8 +11,10 @@ export interface EmojiProps {
 function Emoji({ value, size = 16 }: EmojiProps) {
   const codePoint = value.codePointAt(0)
 
-  if (!codePoint)
+  if (!codePoint) {
+    console.warn(`${value} was not found in twemoji CDN`)
     return <></>
+  }
 
   return (
     <Image
