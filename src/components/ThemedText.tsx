@@ -1,33 +1,31 @@
-import { Text, type TextProps } from 'react-native';
+import { Text, type TextProps } from 'react-native'
 
-import { useColorScheme } from 'react-native';
+import { useThemeColor } from '@/hooks/useThemeColor'
 
-export type ThemedTextProps = TextProps & {
-  lightColor?: string;
-  darkColor?: string;
-  flipContrast?: boolean;
-  disableColorScheme?: boolean;
-  type?: 'default' | 'title' | 'defaultSemiBold' | 'subtitle' | 'link';
-};
+type ThemedTextTypes = 'default' | 'title' | 'subtitle'
 
-export function ThemedText({
-  lightColor,
-  darkColor,
-  className,
-  disableColorScheme,
-  type = 'default',
-  ...rest
-}: ThemedTextProps) {
-  return (
-    <Text
-      className={`${baseStyles[type]} ${(!disableColorScheme ? (useColorScheme() === 'dark' ? 'text-white' : 'text-black') : '')} ${className}`}
-      {...rest}
-    />
-  );
+const baseStyles: { [type in ThemedTextTypes]: string } = {
+  default: '',
+  title: 'text-[30px] mb-1',
+  subtitle: 'text-[22px] mb-1'
 }
 
-const baseStyles: { [type: string]: string } = {
-  default: 'text-base',
-  title: 'text-[32px] font-bold',
-  subtitle: 'text-[18px] font-bold',
+const basetyleFonts: { [type in ThemedTextTypes]: string } = {
+  default: '',
+  title: 'RobotoSlab_700Bold',
+  subtitle: 'RobotoSlab_700Bold'
+}
+
+export interface ThemedTextProps extends TextProps {
+  lightColor?: string
+  darkColor?: string
+  type?: ThemedTextTypes
+}
+
+export default function ThemedText({ lightColor, darkColor, className, style, type = 'default', ...rest }: ThemedTextProps) {
+  const textColor = useThemeColor({ light: lightColor, dark: darkColor }, 'text')
+
+  return (
+    <Text className={`${baseStyles[type]} ${textColor} ${className}`} {...rest} style={[style, { fontFamily: basetyleFonts[type] }]}/>
+  )
 }

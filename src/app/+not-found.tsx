@@ -1,36 +1,25 @@
-import { Link, Stack, usePathname } from 'expo-router';
-import { StyleSheet } from 'react-native';
+//
+// +not-found.tsx
+//
+// A special directory shown when navigator tries accessing a missing or out-of-scope route.
+// This should only occur in rare circumstances in production due to missing data.
+//
 
-import { ThemedText } from '@/components/ThemedText';
-import { ThemedView } from '@/components/ThemedView';
+import ThemedText from '@/components/ThemedText'
+import ThemedView from '@/components/ThemedView'
+import Footer from '@/components/Footer'
+import Image from '@/components/Image'
+
+import { useColorScheme } from '@/hooks/useColorScheme'
 
 export default function NotFoundScreen() {
-  const pathName = usePathname()
-  
+  const colorScheme = useColorScheme() ?? 'light'
+
   return (
-    <>
-      <Stack.Screen options={{ title: 'Oops!' }} />
-      <ThemedView style={styles.container}>
-        <ThemedText type="title">This screen doesn't exist.</ThemedText>
-        <ThemedText>{pathName}</ThemedText>
-
-        <Link href="/" style={styles.link}>
-          <ThemedText type="link">Go to home screen!</ThemedText>
-        </Link>
-      </ThemedView>
-    </>
-  );
+    <ThemedView className='flex-1 justify-center items-center p-5 gap-4'>
+      <Image source={require('$/images/mono-icon.png')} tintColor={colorScheme === 'light' ? '#000000' : ''} width={500} height={500} className='absolute opacity-5' />
+        <ThemedText type='title'>This page doesn't exist.</ThemedText>
+      <Footer />
+    </ThemedView>
+  )
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    padding: 20,
-  },
-  link: {
-    marginTop: 15,
-    paddingVertical: 15,
-  },
-});

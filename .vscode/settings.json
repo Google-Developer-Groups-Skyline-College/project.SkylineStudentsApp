@@ -1,7 +1,8 @@
 {
     "workbench.colorCustomizations": {
         "terminal.background": "#00000000",
-        "minimap.background": "#00000000",
-        "scrollbar.shadow": "#00000000"
-    }
+        "minimap.background": "#00000015",
+        "scrollbar.shadow": "#00000015"
+    },
+    "tailwindCSS.classAttributes": ["className", "classNames"]
 }
