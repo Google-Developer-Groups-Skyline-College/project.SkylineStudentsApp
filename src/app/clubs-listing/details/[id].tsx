@@ -141,7 +141,7 @@ export default function ClubDetails() {
                 headerImage={
                     <Image
                         source={`${SUPABASE_CLUB_ASSETS_ENDPOINT}/galleries/${clubInfo.id}/z_backdrop.webp`}
-                        className='w-full h-full object-cover'
+                        className='w-full h-[105%] object-cover'
                     />
                 }
             >
