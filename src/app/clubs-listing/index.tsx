@@ -123,9 +123,7 @@ export default function ClubsListing() {
                         }}
 
                         renderItem={({ index }) => (
-                            <ThemedView className='flex w-full h-full justify-center'>
-                                <Image source={PHOTOS[index]} contentPosition='center' className='w-full h-full rounded-lg' />
-                            </ThemedView>
+                            <Image source={PHOTOS[index]} contentPosition='center' className='w-full h-full' />
                         )}
                     />
                 }
