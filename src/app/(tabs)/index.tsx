@@ -55,7 +55,7 @@ export default function HomeScreen() {
 
   return (
         <ScrollView className='bg-black' showsVerticalScrollIndicator>
-          <StatusBar translucent backgroundColor='transparent' />
+          {/* <StatusBar translucent backgroundColor='transparent' /> */}
 
           <Animated.View style={backdropAnimatedStyle} className='flex w-full justify-end'>
             {/* <Image source={require('$/images/decoratives/centerpiece.webp')} contentPosition={'top'} priority={'high'} cachePolicy={'memory-disk'} className='absolute w-full h-full object-cover' /> */}
