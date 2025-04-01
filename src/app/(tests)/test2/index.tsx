@@ -1,7 +1,7 @@
 // todo
 //  add useQuery to RSS read
 
-import React, { Suspense, useEffect, useRef, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { View, Dimensions, Text, TouchableHighlight } from 'react-native'
 import { Link } from 'expo-router'
 
@@ -135,9 +135,7 @@ export default function Resources() {
                         }}
 
                         renderItem={({ index }) => (
-                            <View className='flex w-full h-full justify-center'>
-                                <Image source={PHOTOS[index]} className='w-full h-full rounded-lg' />
-                            </View>
+                            <Image source={PHOTOS[index]} contentPosition='center' className='w-full h-full' />
                         )}
                     />
                 }

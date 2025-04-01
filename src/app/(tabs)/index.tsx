@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { View, Text, ScrollView, Image } from 'react-native'
+import { View, Text, ScrollView,  } from 'react-native'
 import Animated, { useSharedValue, useAnimatedStyle, withSpring} from 'react-native-reanimated'
 
 import { LinearGradient } from 'expo-linear-gradient'
@@ -15,11 +15,10 @@ import ThemedText from '@/components/ThemedText'
 import ThemedView from '@/components/ThemedView'
 import { UserConfig } from '@/constants/UserConfig'
 import Footer from '@/components/Footer'
-// import Image from '@/components/Image'
+import Image from '@/components/Image'
 import { Ionicons } from '@expo/vector-icons'
 
 import Emoji from '@/components/Emoji'
-
 
 const FORECAST_API_URL = 'https://api.open-meteo.com/v1/forecast?latitude=37.6275&longitude=-122.4711&current=temperature_2m,weather_code&temperature_unit=fahrenheit&wind_speed_unit=ms&precipitation_unit=inch&timezone=America%2FLos_Angeles&forecast_days=1'
 
