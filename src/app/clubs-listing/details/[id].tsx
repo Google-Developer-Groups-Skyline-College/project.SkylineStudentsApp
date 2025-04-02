@@ -10,12 +10,12 @@ import { useQuery } from '@tanstack/react-query'
 import { useModal } from 'react-native-modalfy'
 
 import ParallaxScrollView from '@/components/ParallaxScrollView'
-import LoadingScreen from '@/components/LoadingScreen'
-import LinkWrap from '@/components/LinkWrap'
-import ThemedView from '@/components/ThemedView'
-import ThemedText from '@/components/ThemedText'
-import Footer from '@/components/Footer'
-import Image from '@/components/Image'
+import { LoadingScreen } from '@/components/LoadingScreen'
+import { LinkWrap } from '@/components/LinkWrap'
+import { ThemedView } from '@/components/ThemedView'
+import { ThemedText } from '@/components/ThemedText'
+import { Footer } from '@/components/Footer'
+import { Image } from '@/components/Image'
 
 import useSupabase from '@/hooks/useSupabase'
 

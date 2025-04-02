@@ -2,9 +2,9 @@ import { Image } from 'expo-image'
 
 import { useColorScheme } from '@/hooks/useColorScheme'
 
-import ThemedView from './ThemedView'
+import { ThemedView } from './ThemedView'
 
-export default function LoadingScreen() {
+export function LoadingScreen() {
     const colorScheme = useColorScheme() ?? 'light'
 
     return (

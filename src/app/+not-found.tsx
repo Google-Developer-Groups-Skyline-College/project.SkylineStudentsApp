@@ -5,10 +5,10 @@
 // This should only occur in rare circumstances in production due to missing data.
 //
 
-import ThemedText from '@/components/ThemedText'
-import ThemedView from '@/components/ThemedView'
-import Footer from '@/components/Footer'
-import Image from '@/components/Image'
+import { ThemedText } from '@/components/ThemedText'
+import { ThemedView } from '@/components/ThemedView'
+import { Footer } from '@/components/Footer'
+import { Image } from '@/components/Image'
 
 import { useColorScheme } from '@/hooks/useColorScheme'
 

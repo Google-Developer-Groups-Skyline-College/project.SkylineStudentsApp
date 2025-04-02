@@ -8,7 +8,7 @@ export interface EmojiProps {
   size?: number
 }
 
-function Emoji({ value, size = 16 }: EmojiProps) {
+export const Emoji = memo(function Emoji({ value, size = 16 }: EmojiProps) {
   const codePoint = value.codePointAt(0)
   let source
 
@@ -25,6 +25,4 @@ function Emoji({ value, size = 16 }: EmojiProps) {
       style={{ width: size, height: size, marginVertical: 'auto' }}
     />
   )
-}
-
-export default memo(Emoji)
+})

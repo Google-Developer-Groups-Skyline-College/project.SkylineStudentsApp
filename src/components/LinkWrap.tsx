@@ -10,7 +10,7 @@ export interface LinkWrapProps extends PressableProps {
   href: string | RelativePathString
 }
 
-export default function LinkWrap({ lightColor, darkColor, className, children, href, ...otherProps }: LinkWrapProps) {
+export function LinkWrap({ lightColor, darkColor, className, children, href, ...otherProps }: LinkWrapProps) {
   const themedBackground = useThemeColor({ light: lightColor, dark: darkColor }, 'background')
   const backgroundColor = (lightColor && darkColor) ? themedBackground : ''
   

@@ -22,7 +22,7 @@ export interface ThemedTextProps extends TextProps {
   type?: ThemedTextTypes
 }
 
-export default function ThemedText({ lightColor, darkColor, className, style, type = 'default', ...rest }: ThemedTextProps) {
+export function ThemedText({ lightColor, darkColor, className, style, type = 'default', ...rest }: ThemedTextProps) {
   const textColor = useThemeColor({ light: lightColor, dark: darkColor }, 'text')
 
   return (

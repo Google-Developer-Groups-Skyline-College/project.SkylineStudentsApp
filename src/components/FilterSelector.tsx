@@ -5,7 +5,7 @@ import Feather from '@expo/vector-icons/Feather'
 
 import { TagDetails } from '@/constants/Tags'
 
-export default function FilterSelector() {
+export function FilterSelector() {
 
     const [ filterList, setFilterList ] = useState(Array<string>)
     const [ showList, setShowList ] = useState(false)

@@ -7,7 +7,7 @@ import Octicons from '@expo/vector-icons/Octicons'
 import BottomSheet, { BottomSheetView } from '@gorhom/bottom-sheet'
 import Mapbox from '@rnmapbox/maps'
 
-import ThemedBottomSheet from '@/components/ThemedBottomSheet'
+import { ThemedBottomSheet } from '@/components/ThemedBottomSheet'
 
 import PointOfInterestCard from './components/PointOfInterestCard'
 import PointOfInterestMarker from './components/PointOfInterestMarker'

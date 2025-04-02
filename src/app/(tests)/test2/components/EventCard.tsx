@@ -5,11 +5,11 @@ import * as Calendar from 'expo-calendar'
 
 import { useState, memo } from 'react'
 
-import ThemedText from '@/components/ThemedText'
-import LinkWrap from '@/components/LinkWrap'
-import Image from '@/components/Image'
-import Card from '@/components/Card'
-import ThemedView from '@/components/ThemedView'
+import { ThemedText } from '@/components/ThemedText'
+import { LinkWrap } from '@/components/LinkWrap'
+import { Image } from '@/components/Image'
+import { Card } from '@/components/Card'
+import { ThemedView } from '@/components/ThemedView'
 
 const DATE_FORMAT: Intl.DateTimeFormatOptions = {
     hour12: true,
@@ -30,7 +30,7 @@ export interface EventCardProps {
     location: string
 }
 
-function EventCard({ title, time, location, link, img, description }: EventCardProps) {
+export const EventCard = memo(function EventCard({ title, time, location, link, img, description }: EventCardProps) {
 
     const [expanded, setExpanded] = useState(false)
     
@@ -91,6 +91,4 @@ function EventCard({ title, time, location, link, img, description }: EventCardP
             }
         </View>
     )
-}
-
-export default memo(EventCard)
+})

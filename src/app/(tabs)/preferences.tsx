@@ -1,14 +1,14 @@
 import { View, Text, Image } from 'react-native'
 
 import ParallaxScrollView from '@/components/ParallaxScrollView'
-import ThemedText from '@/components/ThemedText'
-import ThemedView from '@/components/ThemedView'
+import { ThemedText } from '@/components/ThemedText'
+import { ThemedView } from '@/components/ThemedView'
 
 import { UserConfig } from '@/constants/UserConfig'
 
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons'
 import MaterialIcons from '@expo/vector-icons/MaterialIcons'
-import Footer from '@/components/Footer'
+import { Footer } from '@/components/Footer'
 
 export default function HomeScreen() {
   return (

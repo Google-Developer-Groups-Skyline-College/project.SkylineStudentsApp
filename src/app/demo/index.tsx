@@ -9,9 +9,9 @@ import { Link } from 'expo-router'
 
 import { HelloWave } from '@/components/HelloWave'
 import ParallaxScrollView from '@/components/ParallaxScrollView'
-import ThemedText from '@/components/ThemedText'
-import ThemedView from '@/components/ThemedView'
-import Image from '@/components/Image'
+import { ThemedText } from '@/components/ThemedText'
+import { ThemedView } from '@/components/ThemedView'
+import { Image } from '@/components/Image'
 
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons'
 

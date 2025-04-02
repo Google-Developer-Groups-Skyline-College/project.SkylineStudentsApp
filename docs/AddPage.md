@@ -18,7 +18,7 @@ import { Stack } from 'expo-router'
 import { ThemedText } from '@/components/ThemedText'
 import ParallaxScrollView from '@/components/ParallaxScrollView'
 import ReturnHome from '@/components/ReturnHome'
-import Image from '@/components/Image'
+import { Image } from '@/components/Image'
 
 export default function Empty() {
 
@@ -91,7 +91,7 @@ import { Stack } from 'expo-router'
 import { ThemedText } from '@/components/ThemedText'
 import ParallaxScrollView from '@/components/ParallaxScrollView'
 import ReturnHome from '@/components/ReturnHome'
-import Image from '@/components/Image'
+import { Image } from '@/components/Image'
 ```
 We are importing individual components from frameworks such as ```View``` from ```react-native``` as well as in-house stuff like ```@/components/ReturnHome``` which is located locally at ```src/components/ReturnHome.tsx```!
 

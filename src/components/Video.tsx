@@ -10,7 +10,7 @@ interface VideoProps extends ViewProps {
     setup?: (player: VideoPlayer) => void
 }
 
-export default function Video({source, setup, ...otherProps }: VideoProps) {
+export function Video({source, setup, ...otherProps }: VideoProps) {
     const player = useVideoPlayer(source, setup ? (player => setup(player)) : undefined)
 
     return <InterOpVideoView player={player} {...otherProps} />

@@ -3,7 +3,7 @@ import invert from 'invert-color'
 
 const pixelRatio = 1 / PixelRatio.get()
 
-export default function HorizontalRule({ height = 1, color = '#EEE' }) {
+export function HorizontalRule({ height = 1, color = '#EEE' }) {
     const theme = useColorScheme()
     if (theme === 'light')
         color = invert(color)

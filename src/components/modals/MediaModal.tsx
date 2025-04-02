@@ -12,8 +12,8 @@ import { ModalComponentProp } from 'react-native-modalfy'
 import Feather from '@expo/vector-icons/Feather'
 
 import { StatusBar } from 'expo-status-bar'
-import Video from '../Video'
-import Image from '../Image'
+import { Video } from '../Video'
+import { Image } from '../Image'
 
 export interface MediaModelContent {
     modal: {

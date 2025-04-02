@@ -8,15 +8,15 @@ import { LinearGradient } from 'expo-linear-gradient'
 import { Link } from 'expo-router'
 import { AntDesign, Ionicons } from '@expo/vector-icons'
 
-import LoadingScreen from '@/components/LoadingScreen'
-import ThemedText from '@/components/ThemedText'
-import Image from '@/components/Image'
+import { LoadingScreen } from '@/components/LoadingScreen'
+import { ThemedText } from '@/components/ThemedText'
+import { Image } from '@/components/Image'
 
 import { useThemeColor } from '@/hooks/useThemeColor'
 import useRssFetch, { sanitizeXml } from '@/hooks/useRssFetch'
 
-import EventCard from './components/EventCard'
-import ThemedView from '@/components/ThemedView'
+import { EventCard } from './components/EventCard'
+import { ThemedView } from '@/components/ThemedView'
 
 const width = Dimensions.get('window').width
 

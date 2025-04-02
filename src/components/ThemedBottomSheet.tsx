@@ -14,7 +14,7 @@ interface ThemedBottomSheetProps extends BottomSheetProps {
     backgroundClassName?: string
 }
 
-export default forwardRef<BottomSheet, ThemedBottomSheetProps>(function ThemedBottomSheet(props, ref) {
+export const ThemedBottomSheet = forwardRef<BottomSheet, ThemedBottomSheetProps>(function ThemedBottomSheet(props, ref) {
     const backgroundColor = useThemeColor(null, 'background')
 
     return <InterOpBottomSheet ref={ref} backgroundClassName={`${props.backgroundClassName} ${backgroundColor}`} {...props} />
