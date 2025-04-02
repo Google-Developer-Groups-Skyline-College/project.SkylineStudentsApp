@@ -81,6 +81,7 @@
     "react-native-lazy-image-loader": "^1.1.5",
     "react-native-material-ripple": "^0.9.1",
     "react-native-modal": "^14.0.0-rc.0",
+    "react-native-modalfy": "^3.6.0",
     "react-native-pager-view": "6.5.1",
     "react-native-reanimated": "~3.16.1",
     "react-native-reanimated-carousel": "^4.0.2",

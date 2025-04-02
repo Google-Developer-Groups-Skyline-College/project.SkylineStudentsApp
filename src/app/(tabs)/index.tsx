@@ -1,9 +1,8 @@
 import { useEffect, useState } from 'react'
-import { View, Text, ScrollView,  } from 'react-native'
+import { View, Text, ScrollView } from 'react-native'
 import Animated, { useSharedValue, useAnimatedStyle, withSpring} from 'react-native-reanimated'
 
 import { LinearGradient } from 'expo-linear-gradient'
-import { StatusBar } from 'expo-status-bar'
 
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons'
 import MaterialIcons from '@expo/vector-icons/MaterialIcons'
@@ -23,22 +22,13 @@ import Emoji from '@/components/Emoji'
 const FORECAST_API_URL = 'https://api.open-meteo.com/v1/forecast?latitude=37.6275&longitude=-122.4711&current=temperature_2m,weather_code&temperature_unit=fahrenheit&wind_speed_unit=ms&precipitation_unit=inch&timezone=America%2FLos_Angeles&forecast_days=1'
 
 export default function HomeScreen() {
+  
+
 
   const [ temperature, setTemperature ] = useState(0)
   const currentDate = new Date()
 
-  async function updateForecast() {
-    try {
-      const response = await fetch(FORECAST_API_URL)
-      const json = await response.json()
-      setTemperature(json.current.temperature_2m)
-    } catch (error) {
-      console.error(error)
-    }
-  }
-
   const backdropHeight = useSharedValue(120)
-
   const backdropAnimatedStyle = useAnimatedStyle(() => {
     return {
       height: backdropHeight.value
@@ -46,6 +36,16 @@ export default function HomeScreen() {
   })
 
   useEffect(() => {
+    async function updateForecast() {
+      try {
+        const response = await fetch(FORECAST_API_URL)
+        const json = await response.json()
+        setTemperature(json.current.temperature_2m)
+      } catch (error) {
+        console.error(error)
+      }
+    }
+
     updateForecast()
 
     setTimeout(() => {
@@ -55,12 +55,10 @@ export default function HomeScreen() {
 
   return (
         <ScrollView className='bg-black' showsVerticalScrollIndicator>
-          {/* <StatusBar translucent backgroundColor='transparent' /> */}
 
           <Animated.View style={backdropAnimatedStyle} className='flex w-full justify-end'>
             {/* <Image source={require('$/images/decoratives/centerpiece.webp')} contentPosition={'top'} priority={'high'} cachePolicy={'memory-disk'} className='absolute w-full h-full object-cover' /> */}
             <Image source={require('$/images/decoratives/centerpiece.webp')} className='absolute w-full h-full object-cover' />
-
 
             {/* overlays on image */}
             <LinearGradient
@@ -71,7 +69,7 @@ export default function HomeScreen() {
             <View className='p-4'>
               <View className='flex flex-row py-1 gap-x-1'>
                 <Text className='text-neutral-200 text-xs font-bold'>{temperature}°F</Text>
-                <Image source={require('$/images/icons/clear-day.gif')} resizeMode='cover' className='w-5 h-full' />
+                <Image source={require('$/images/icons/clear-day.gif')} className='w-5 h-full' />
                 {/* <Image source={require('$/images/icons/clear-day.gif')} width={20} height={'100%'} /> */}
               </View>
 
@@ -91,7 +89,7 @@ export default function HomeScreen() {
                   style={{ textShadowColor: 'rgba(0, 0, 0, 1)', textShadowOffset: { width: -1, height: 1 }, textShadowRadius: 32 }}>
                   It is{' '}
                   <Text className='font-semibold'>
-                    {currentDate.toLocaleDateString('en', { weekday: 'long' })}, {currentDate.toLocaleDateString('en', { month: 'short', 'day': 'numeric' })}.
+                    {currentDate.toLocaleDateString('en', { weekday: 'long' })}, {currentDate.toLocaleDateString('en', { month: 'short', day: 'numeric' })}.
                   </Text>
                 </Text>
               </View>
@@ -194,7 +192,9 @@ export default function HomeScreen() {
                 </View>
               </LinkWrap>
 
-              <LinkWrap href='https://phx-ban-apps.smccd.edu/StudentSelfService/ssb/studentCommonDashboard' className='w-full h-36 rounded-xl overflow-hidden border-2' lightColor='border-[#2F89FFFF]/50' darkColor='border-[#2F89FFFF]'>
+              <LinkWrap
+                href='https://phx-ban-apps.smccd.edu/StudentSelfService/ssb/studentCommonDashboard'
+                className='w-full h-36 rounded-xl overflow-hidden border-2' lightColor='border-[#2F89FFFF]/50' darkColor='border-[#2F89FFFF]'>
                 <Image source={require('$/images/decoratives/smccd-services/websmart-banner.webp')} className='absolute w-full h-full' />
 
                 <LinearGradient className='absolute flex w-full h-full justify-center items-center opacity-75'

@@ -109,7 +109,6 @@ export default function Map() {
       if (poiQuery.isFetched && poiQuery.data) {
           // club query will return an array with the single club in it
           setQueriedPois(poiQuery.data)
-          // console.log(JSON.stringify(poiQuery.data, null, 4))
       }
   }, [poiQuery])
 

@@ -2,7 +2,7 @@
 //  add useQuery to RSS read
 
 import React, { useEffect, useState } from 'react'
-import { View, Dimensions, Text, TouchableHighlight, SectionList, SectionListData } from 'react-native'
+import { View, Dimensions, TouchableHighlight, SectionList, SectionListData } from 'react-native'
 
 import { LinearGradient } from 'expo-linear-gradient'
 import { Link } from 'expo-router'
@@ -23,7 +23,7 @@ const width = Dimensions.get('window').width
 const PHOTOS = [
     require('$/images/decoratives/centerpiece.webp'),
     require('$/images/decoratives/club_rush.webp'),
-    require('$/images/decoratives/boba_social.webp')
+    require('$/images/decoratives/stem-clubs-boba-social-fall-2024.webp')
 ]
 
 const RSS_EVENTS_ENDPOINT = 'https://events.skylinecollege.edu/live/rss/events/group/District%20Academic%20Calendar/group/Districtwide%20Events/group/Skyline%20Athletics/group/Skyline%20College/group/Skyline%20Transfer%20Center/group/Skyline%20College/header/Skyline%20College%20Events'
@@ -77,12 +77,14 @@ export default function Resources() {
         }
 
         setDatedEvents(collectedEvents)
-        setPageRefreshing(false)
+        setTimeout(() => {
+            setPageRefreshing(false)
+        }, 500)
     }, [page, fetchedRss])
 
     return (
         <>
-            { !fetchedRss
+            { pageRefreshing && datedEvents
             ?
             <LoadingScreen />
             :
@@ -96,8 +98,8 @@ export default function Resources() {
 
                     {/* overlays on image */}
                     <LinearGradient
-                    className='absolute w-full h-full'
-                    colors={['#000000', '#FFFFFF00']} start={{ x: -0.05, y: 0.5 }} end={{ x: 1, y: 0.5 }}
+                        className='absolute w-full h-full'
+                        colors={['#000000', '#FFFFFF00']} start={{ x: -0.05, y: 0.5 }} end={{ x: 1, y: 0.5 }}
                     />
 
                     <View className='p-4'>
@@ -106,7 +108,7 @@ export default function Resources() {
                             className='text-white leading-tight'
                             type='title'
                             style={{ textShadowColor: 'rgba(0, 0, 0, 1)', textShadowOffset: { width: -1, height: 1 }, textShadowRadius: 32 }}>
-                            Hello, 
+                                Hello,
                             </ThemedText>
                         </View>
                     </View>
@@ -157,9 +159,13 @@ export default function Resources() {
 
                 <ThemedView className='flex h-[5%] items-center gap-1'>
                     <View className='w-full flex flex-row items-center justify-center gap-3'>
-                        <TouchableHighlight onPress={() => { setPage(Math.max(1, page - 1)) }}><AntDesign name='leftsquare' color={'gray'} size={32} /></TouchableHighlight>
-                        <ThemedText className='font-black'>{page}</ThemedText>
-                        <TouchableHighlight onPress={() => { setPage(Math.min(4, page + 1)) }}><AntDesign name='rightsquare' color={'gray'} size={32} /></TouchableHighlight>
+                        <TouchableHighlight onPress={() => { setPage(Math.max(1, page - 1)) }}>
+                            <AntDesign name='leftsquare' color={'gray'} size={32} />
+                        </TouchableHighlight>
+                        <ThemedText className='font-black'>{`${page} (${page * EVENTS_PER_PAGE}/${4 * EVENTS_PER_PAGE})`}</ThemedText>
+                        <TouchableHighlight onPress={() => { setPage(Math.min(4, page + 1)) }}>
+                            <AntDesign name='rightsquare' color={'gray'} size={32} />
+                        </TouchableHighlight>
                     </View>
 
                     <Link href='https://events.skylinecollege.edu' asChild>

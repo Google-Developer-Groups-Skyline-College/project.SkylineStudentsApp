@@ -5,7 +5,7 @@ Demo Page
 import { View, Text, ImageSourcePropType } from 'react-native'
 
 import { BlurView } from 'expo-blur'
-import { Stack, Link } from 'expo-router'
+import { Link } from 'expo-router'
 
 import { HelloWave } from '@/components/HelloWave'
 import ParallaxScrollView from '@/components/ParallaxScrollView'
@@ -89,12 +89,6 @@ export default function Demo() {
 
 
             </ParallaxScrollView>
-
-            <Stack.Screen
-                options={{
-                    title: '',
-                }}
-            />
 
             {/* Footer as described in components/Footer.tsx */}
             {/* <Footer /> */}
