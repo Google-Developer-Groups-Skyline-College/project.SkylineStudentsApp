@@ -1,6 +1,6 @@
 
 import { useEffect } from 'react'
-import { Dimensions } from 'react-native'
+import { Dimensions, ImageRequireSource } from 'react-native'
 import { configureReanimatedLogger, ReanimatedLogLevel, Easing } from 'react-native-reanimated'
 import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native'
 import { ModalProvider, createModalStack } from 'react-native-modalfy'
@@ -36,19 +36,18 @@ configureReanimatedLogger({
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync()
 
-const stack = createModalStack({ MediaModal }, { 
+const stack = createModalStack({ MediaModal }, {
   backdropOpacity: 0.6,
-  
 })
 
 const queryClient = new QueryClient()
 
-function cacheImages(images) {
-  return images.map(image => {
+function preloadImages(images: (string | ImageRequireSource)[]) {
+  return images.map((image: string | ImageRequireSource) => {
     if (typeof image === 'string') {
-      return Image.prefetch(image);
+      return Image.prefetch(image, 'memory-disk')
     } else {
-      return Asset.fromModule(image).downloadAsync();
+      return Asset.fromModule(image).downloadAsync()
     }
   })
 }
@@ -68,10 +67,10 @@ export default function RootLayout() {
 
   useEffect(() => {
     async function loadResourcesAndDataAsync() {
-      const imageAssets = cacheImages([
+      const imageAssets = preloadImages([
         'https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png',
         require('$/images/loading-ripple.webp'),
-        require('$/images/mono-icon.png'),
+        require('$/images/mono-icon.png')
       ])
 
       try {
@@ -92,21 +91,22 @@ export default function RootLayout() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-        <SafeAreaProvider>
-          <GestureHandlerRootView>
-            <ModalProvider stack={stack}>
+      <GestureHandlerRootView>
+        <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
+          <ModalProvider stack={stack}>
+            <SafeAreaProvider>
 
-            <Stack screenOptions={{ headerTransparent: true, headerTitle: '', headerTintColor: 'white' }}>
-              <Stack.Screen name='+not-found' />
-            </Stack>
+              <Stack screenOptions={{ headerTransparent: true, headerTitle: '', headerTintColor: 'white' }}>
+                <Stack.Screen name='+not-found' />
+              </Stack>
 
-            {/* StatusBar must be after Stack components in order to work properly */}
-            <StatusBar style='light' />
-            </ModalProvider>
-          </GestureHandlerRootView>
-        </SafeAreaProvider>
-      </ThemeProvider>
+              {/* StatusBar must be after Stack components in order to work properly */}
+              <StatusBar style='light' />
+
+            </SafeAreaProvider>
+          </ModalProvider>
+        </ThemeProvider>
+      </GestureHandlerRootView>
     </QueryClientProvider>
   )
 }
