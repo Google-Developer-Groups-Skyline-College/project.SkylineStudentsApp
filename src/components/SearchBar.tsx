@@ -18,7 +18,7 @@ interface SearchBarProps extends TextInputProps {
     onFilterOutput: Function
 }
 
-export default function SearchBar({ searchables, onChangeText, onFilterOutput, className, ...otherProps }: SearchBarProps) {
+export function SearchBar({ searchables, onChangeText, onFilterOutput, className, ...otherProps }: SearchBarProps) {
     const textColor = useThemeColor(null, 'text')
 
     const [searchTerm, setSearchTerm] = useState('')

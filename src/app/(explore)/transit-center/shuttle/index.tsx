@@ -2,12 +2,12 @@ import { useState } from 'react'
 import { TouchableHighlight, View } from 'react-native'
 
 import ParallaxScrollView from '@/components/ParallaxScrollView'
-import HorizontalRule from '@/components/HorizontalRule'
-import ThemedText from '@/components/ThemedText'
-import ThemedView from '@/components/ThemedView'
+import { HorizontalRule } from '@/components/HorizontalRule'
+import { ThemedText } from '@/components/ThemedText'
+import { ThemedView } from '@/components/ThemedView'
 import MediaModal, { MediaModelContent } from '@/components/MediaModal'
-import LinkWrap from '@/components/LinkWrap'
-import Image from '@/components/Image'
+import { LinkWrap } from '@/components/LinkWrap'
+import { Image } from '@/components/Image'
 
 export default function TransitCenter() {
     const [ modalContent, setModalContent ] = useState<MediaModelContent>()

@@ -3,26 +3,26 @@ import { View, Text, Dimensions } from 'react-native'
 import { useEffect, useState } from 'react'
 import Carousel from 'react-native-reanimated-carousel'
 
-import ThemedText from '@/components/ThemedText'
-import LinkWrap from '@/components/LinkWrap'
-import ThemedView from '@/components/ThemedView'
-import SearchBar from '@/components/SearchBar'
-import Card from '@/components/Card'
+import { ThemedText } from '@/components/ThemedText'
+import { LinkWrap } from '@/components/LinkWrap'
+import { ThemedView } from '@/components/ThemedView'
+import { SearchBar } from '@/components/SearchBar'
+import { Card } from '@/components/Card'
 
 import ParallaxScrollView from '@/components/ParallaxScrollView'
-import FilterSelector from '@/components/FilterSelector'
-import Image from '@/components/Image'
+import { FilterSelector } from '@/components/FilterSelector'
+import { Image } from '@/components/Image'
 
 // import { Clubs, ClubDetails } from '@/constants/Clubs'
 import { TagDetails } from '@/constants/Tags'
 import Environment from '@/constants/Environment'
 
-import Footer from '@/components/Footer'
+import { Footer } from '@/components/Footer'
 import useSupabase from '@/hooks/useSupabase'
 
 import { useQuery } from '@tanstack/react-query'
 import { QueryData } from '@supabase/supabase-js'
-import HorizontalRule from '@/components/HorizontalRule'
+import { HorizontalRule } from '@/components/HorizontalRule'
 
 const SUPABASE_CLUB_ASSETS_ENDPOINT = Environment.SUPABASE_URL + '/storage/v1/object/public/clubs-assets'
 
@@ -123,9 +123,7 @@ export default function ClubsListing() {
                         }}
 
                         renderItem={({ index }) => (
-                            <ThemedView className='flex w-full h-full justify-center'>
-                                <Image source={PHOTOS[index]} contentPosition='center' className='w-full h-full rounded-lg' />
-                            </ThemedView>
+                            <Image source={PHOTOS[index]} contentPosition='center' className='w-full h-full' />
                         )}
                     />
                 }
@@ -176,5 +174,5 @@ export default function ClubsListing() {
             }
             
         </View>
-    );
+    )
 }

@@ -1,11 +1,11 @@
 import { View, Text, Pressable } from 'react-native'
 import { useState } from 'react'
 
-import Feather from '@expo/vector-icons/Feather';
+import Feather from '@expo/vector-icons/Feather'
 
-import { TagDetails } from '@/constants/Tags';
+import { TagDetails } from '@/constants/Tags'
 
-export default function FilterSelector() {
+export function FilterSelector() {
 
     const [ filterList, setFilterList ] = useState(Array<string>)
     const [ showList, setShowList ] = useState(false)

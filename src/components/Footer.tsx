@@ -1,7 +1,7 @@
 import { View, Text } from 'react-native'
-import LinkWrap from './LinkWrap'
+import { LinkWrap } from './LinkWrap'
 
-export default function Footer() {
+export function Footer() {
 
     {/* TODO - Add a link to a google form for feedback */}
 

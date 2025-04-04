@@ -2,17 +2,16 @@
 Demo Page
 */
 
-import { View, Text, ScrollView, ImageSourcePropType } from 'react-native'
+import { View, Text, ImageSourcePropType } from 'react-native'
 
 import { BlurView } from 'expo-blur'
-import { Stack, Link } from 'expo-router'
+import { Link } from 'expo-router'
 
 import { HelloWave } from '@/components/HelloWave'
 import ParallaxScrollView from '@/components/ParallaxScrollView'
 import { ThemedText } from '@/components/ThemedText'
 import { ThemedView } from '@/components/ThemedView'
-import ReturnHome from '@/components/ReturnHome'
-import Image from '@/components/Image'
+import { Image } from '@/components/Image'
 
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons'
 
@@ -40,7 +39,7 @@ export default function Demo() {
                 headerBackgroundColor={{ light: '#000', dark: '#000' }}
                 headerImage={
                     <Image
-                        source={require('$/images/missing.jpg')}
+                        source={require('$/images/image.missing.webp')}
                         contentFit='cover'
                         contentPosition={{bottom: '10%'}}
                         style={{ width: '100%', height: '110%' }}
@@ -80,7 +79,7 @@ export default function Demo() {
                     <EventCard
                     title='Title'
                     subtitle='Subtitle'
-                    img={require('$/images/missing.jpg')}
+                    img={require('$/images/image.missing.webp')}
                     />
 
                 </View>
@@ -88,19 +87,11 @@ export default function Demo() {
                 {/* HelloWave */}
                 <HelloWave />
 
-                {/* Button specifically to go back to home */}
-                <ReturnHome />
 
             </ParallaxScrollView>
-
-            <Stack.Screen
-                options={{
-                    title: '',
-                }}
-            />
 
             {/* Footer as described in components/Footer.tsx */}
             {/* <Footer /> */}
         </View>
-    );
+    )
 }

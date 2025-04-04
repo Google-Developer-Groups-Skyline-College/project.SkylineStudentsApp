@@ -2,7 +2,6 @@ import React from 'react'
 import { Tabs } from 'expo-router'
 
 import { TabBarIcon } from '@/components/navigation/TabBarIcon'
-import ThemedView from '@/components/ThemedView'
 
 import { useColorScheme } from '@/hooks/useColorScheme'
 
@@ -16,11 +15,12 @@ export default function TabLayout() {
       screenOptions={{
         tabBarStyle: {
           position: 'absolute',
-          backgroundColor: '#00000000',
-          borderTopWidth: 0
+          borderTopWidth: 0,
+          borderTopLeftRadius: 24,
+          borderTopRightRadius: 24,
         },
         tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
-        tabBarBackground: () => <ThemedView className='w-full h-full rounded-t-3xl shadow-lg shadow-black' />,
+        tabBarActiveBackgroundColor: '#50505020',
         headerShown: false
       }}>
       <Tabs.Screen

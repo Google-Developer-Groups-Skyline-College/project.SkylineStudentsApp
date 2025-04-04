@@ -1,11 +1,11 @@
-import React from "react";
-import { View, Text, ImageBackground, ImageSourcePropType } from "react-native";
-import { Ionicons } from "@expo/vector-icons";
+import React from "react"
+import { View, Text, ImageBackground, ImageSourcePropType } from "react-native"
+import { Ionicons } from "@expo/vector-icons"
 interface NewsCardProps {
-  image: ImageSourcePropType;
-  title: string;
-  desc: string;
-  date: string;
+  image: ImageSourcePropType
+  title: string
+  desc: string
+  date: string
 }
 const NewsCard: React.FC<NewsCardProps> = ({ image, title, desc, date }) => {
   return (
@@ -30,6 +30,6 @@ const NewsCard: React.FC<NewsCardProps> = ({ image, title, desc, date }) => {
         </Text>
       </View>
     </View>
-  );
-};
-export default NewsCard;
+  )
+}
+export default NewsCard

@@ -5,11 +5,11 @@ import { LinearGradient } from 'expo-linear-gradient'
 import FontAwesome6 from '@expo/vector-icons/FontAwesome6'
 
 import ParallaxScrollView from '@/components/ParallaxScrollView'
-import HorizontalRule from '@/components/HorizontalRule'
-import ThemedText from '@/components/ThemedText'
-import ThemedView from '@/components/ThemedView'
-import LinkWrap from '@/components/LinkWrap'
-import Image from '@/components/Image'
+import { HorizontalRule } from '@/components/HorizontalRule'
+import { ThemedText } from '@/components/ThemedText'
+import { ThemedView } from '@/components/ThemedView'
+import { LinkWrap } from '@/components/LinkWrap'
+import { Image } from '@/components/Image'
 
 const width = Dimensions.get('window').width
 

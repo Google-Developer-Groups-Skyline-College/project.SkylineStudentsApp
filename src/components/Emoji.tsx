@@ -1,10 +1,28 @@
-import { View } from 'react-native'
-import Icon, { iconNames } from 'react-native-ico-emojione-emojis'
+import React, { memo } from 'react'
+import { Image } from 'expo-image'
 
-export function Emoji({ name, size = 20 }: { name: iconNames, size?: number }) {
-    return (
-        <View className='flex items-center justify-center'>
-            <Icon name={name} height={size} width={size} />
-        </View>
-    )
+const CDN_ENDPOINT = 'https://cdn.jsdelivr.net/gh/twitter/twemoji@v14.0.2/assets/svg/'
+
+export interface EmojiProps {
+  value: string
+  size?: number
 }
+
+export const Emoji = memo(function Emoji({ value, size = 16 }: EmojiProps) {
+  const codePoint = value.codePointAt(0)
+  let source
+
+  if (!codePoint) {
+    console.warn(`${value} was not found in twemoji CDN`)
+    source = require('$/images/image.missing.webp')
+  } else {
+    source = `${CDN_ENDPOINT}/${codePoint.toString(16)}.svg`
+  }
+
+  return (
+    <Image
+      source={source}
+      style={{ width: size, height: size, marginVertical: 'auto' }}
+    />
+  )
+})

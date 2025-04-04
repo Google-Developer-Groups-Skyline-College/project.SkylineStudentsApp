@@ -4,7 +4,7 @@ import { openBrowserAsync } from 'expo-web-browser'
 import { type ComponentProps } from 'react'
 import { Platform } from 'react-native'
 
-type ExternalLinkProps = Omit<ComponentProps<typeof Link>, 'href'> & { href: string & HrefInputParams };
+type ExternalLinkProps = Omit<ComponentProps<typeof Link>, 'href'> & { href: string & HrefInputParams }
 
 export function ExternalLink({ href, ...rest }: ExternalLinkProps) {
   return (

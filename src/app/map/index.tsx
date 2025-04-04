@@ -7,7 +7,7 @@ import Octicons from '@expo/vector-icons/Octicons'
 import BottomSheet, { BottomSheetView } from '@gorhom/bottom-sheet'
 import Mapbox from '@rnmapbox/maps'
 
-import ThemedBottomSheet from '@/components/ThemedBottomSheet'
+import { ThemedBottomSheet } from '@/components/ThemedBottomSheet'
 
 import PointOfInterestCard from './components/PointOfInterestCard'
 import PointOfInterestMarker from './components/PointOfInterestMarker'
@@ -109,7 +109,6 @@ export default function Map() {
       if (poiQuery.isFetched && poiQuery.data) {
           // club query will return an array with the single club in it
           setQueriedPois(poiQuery.data)
-          // console.log(JSON.stringify(poiQuery.data, null, 4))
       }
   }, [poiQuery])
 

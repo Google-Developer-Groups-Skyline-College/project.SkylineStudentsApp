@@ -9,7 +9,7 @@ const SOURCE_FALLBACK = require('$/images/image.missing.webp')
 
 type ImageProps = ExpoImageProps & NativeImageProps
 
-export default function Image({source = SOURCE_FALLBACK, ...props}: ImageProps) {
+export function Image({source = SOURCE_FALLBACK, ...props}: ImageProps) {
     return <InterOpImage
         source={source}
         placeholder={SOURCE_PLACEHOLDER}

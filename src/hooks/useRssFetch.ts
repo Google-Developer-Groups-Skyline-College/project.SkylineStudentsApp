@@ -1,4 +1,3 @@
-// import { useEffect, useState } from 'react'
 import { decode } from 'he'
 
 import { XMLParser } from 'fast-xml-parser'
@@ -25,7 +24,7 @@ interface RssData<RssItemStructure> {
     }
 }
 
-const parser = new XMLParser({
+const xmlParser = new XMLParser({
     tagValueProcessor: (_, val) => decode(val)
 })
 
@@ -33,15 +32,15 @@ export default function useRssFetch<RssItemStructure>(endpoint: string) {
 
     const fetchData = async () => {
         const response = await fetch(endpoint)
-
-        const textResponse = await response.text()
-        return parser.parse(textResponse).rss
+        if (response.ok) {
+            return xmlParser.parse(await response.text()).rss
+        }
+        return { channel: { title: '', description: '', link: '', language: '', item: [] } }
     }
 
     const { data } = useQuery({ queryKey: [endpoint], queryFn: async () => {
-        const data: RssData<RssItemStructure> = await fetchData()
-        return data
-    } })
+        return await fetchData() as RssData<RssItemStructure>
+    }})
 
     return data
 }

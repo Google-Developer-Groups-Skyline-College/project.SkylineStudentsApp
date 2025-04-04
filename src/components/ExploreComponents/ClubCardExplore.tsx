@@ -1,11 +1,11 @@
-import React from "react";
-import { View, Text, ImageBackground, ImageSourcePropType } from "react-native";
+import React from "react"
+import { View, Text, ImageBackground, ImageSourcePropType } from "react-native"
 interface CardProps {
-  image: ImageSourcePropType;
-  title: string;
-  description: string;
-  type: string;
-  field: string;
+  image: ImageSourcePropType
+  title: string
+  description: string
+  type: string
+  field: string
 }
 const Card: React.FC<CardProps> = ({
   image,
@@ -23,7 +23,7 @@ const Card: React.FC<CardProps> = ({
       ></ImageBackground>
       <View className="h-1/2 py-2 px-2 gap-1 my-3 ">
         <Text className="text-xs font-light">
-          {type} &bull; {field}
+          {type} &bull {field}
         </Text>
         <Text className="text-lg font-bold">{title}</Text>
         <Text className="text-sm text-gray-700 font-medium ">
@@ -31,6 +31,6 @@ const Card: React.FC<CardProps> = ({
         </Text>
       </View>
     </View>
-  );
-};
-export default Card;
+  )
+}
+export default Card

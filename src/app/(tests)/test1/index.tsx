@@ -6,9 +6,9 @@ import { useNavigation } from 'expo-router'
 import { openBrowserAsync } from 'expo-web-browser'
 import { LinearGradient } from 'expo-linear-gradient'
 
-import ThemedText from '@/components/ThemedText'
-import ThemedView from '@/components/ThemedView'
-import Image from '@/components/Image'
+import { ThemedText } from '@/components/ThemedText'
+import { ThemedView } from '@/components/ThemedView'
+import { Image } from '@/components/Image'
 
 import useRssFetch, { sanitizeXml, extractImages } from '@/hooks/useRssFetch'
 

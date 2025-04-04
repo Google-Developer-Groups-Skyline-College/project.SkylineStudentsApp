@@ -7,8 +7,8 @@ export interface ThemedViewProps extends ViewProps {
   darkColor?: string
 }
 
-export default function ThemedView({ lightColor, darkColor, className, ...otherProps }: ThemedViewProps) {
+export function ThemedView({ lightColor, darkColor, className, ...otherProps }: ThemedViewProps) {
   const backgroundColor = useThemeColor({ light: lightColor, dark: darkColor }, 'background')
 
-  return <View className={`${className} ${backgroundColor}`} {...otherProps} />
+  return <View className={`transition-colors ${className} ${backgroundColor}`} {...otherProps} />
 }

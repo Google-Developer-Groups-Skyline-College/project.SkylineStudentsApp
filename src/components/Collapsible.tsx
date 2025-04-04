@@ -10,7 +10,7 @@ export interface CollapsibleProps extends PropsWithChildren {
   defaultOpen?: boolean
 }
 
-export default function Collapsible({ children, header, defaultOpen = false }: CollapsibleProps) {
+export function Collapsible({ children, header, defaultOpen = false }: CollapsibleProps) {
   const [ isOpen, setIsOpen ] = useState(defaultOpen)
   const theme = useColorScheme() ?? 'light'
 

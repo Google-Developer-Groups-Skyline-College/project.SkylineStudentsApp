@@ -7,19 +7,21 @@ import { useLocalSearchParams } from 'expo-router'
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons'
 import { useQuery } from '@tanstack/react-query'
 
+import { useModal } from 'react-native-modalfy'
+
 import ParallaxScrollView from '@/components/ParallaxScrollView'
-import LoadingScreen from '@/components/LoadingScreen'
-import LinkWrap from '@/components/LinkWrap'
-import ThemedView from '@/components/ThemedView'
-import ThemedText from '@/components/ThemedText'
-import Footer from '@/components/Footer'
-import Image from '@/components/Image'
+import { LoadingScreen } from '@/components/LoadingScreen'
+import { LinkWrap } from '@/components/LinkWrap'
+import { ThemedView } from '@/components/ThemedView'
+import { ThemedText } from '@/components/ThemedText'
+import { Footer } from '@/components/Footer'
+import { Image } from '@/components/Image'
 
 import useSupabase from '@/hooks/useSupabase'
 
 import Environment from '@/constants/Environment'
 import VideoCard from '@/components/VideoCard'
-import MediaModal, { MediaModelContent } from '@/components/MediaModal'
+// import MediaModal, { MediaModelContent } from '@/components/MediaModal'
 import { QueryData } from '@supabase/supabase-js'
 
 import { TagDetails } from '@/constants/Tags'
@@ -47,10 +49,9 @@ export default function ClubDetails() {
     //  id: this is brought over by the clubListing page when you click a club
     //       button. used to know which club id details to query from db.
     const { id }: { id: string } = useLocalSearchParams()
+    const { openModal } = useModal()
 
     const supabase = useSupabase()
-
-
 
 
 
@@ -136,12 +137,12 @@ export default function ClubDetails() {
 
     return (
         <>
-            <MediaModal animatePin maxZoom={3} content={modalContent} />
+            {/* <MediaModal animatePin maxZoom={3} content={modalContent} /> */}
             <ParallaxScrollView
                 headerImage={
                     <Image
                         source={`${SUPABASE_CLUB_ASSETS_ENDPOINT}/galleries/${clubInfo.id}/z_backdrop.webp`}
-                        className='w-full h-full object-cover'
+                        className='w-full h-[105%] object-cover'
                     />
                 }
             >
@@ -229,12 +230,10 @@ export default function ClubDetails() {
                         renderItem={({ index }) => {
                             const item = galleryItems[index]
                             if (item.metadata.mimetype === 'image/webp') {
-                                return <TouchableHighlight onPress={() => {
-                                    setModalContent({
-                                        source: `${SUPABASE_CLUB_ASSETS_ENDPOINT}/galleries/${id}/${item.name}`,
-                                        mediaType: 'image'
-                                    })
-                                }}>
+                                return <TouchableHighlight onPress={() => { openModal('MediaModal', {
+                                    source: `${SUPABASE_CLUB_ASSETS_ENDPOINT}/galleries/${id}/${item.name}`,
+                                    mediaType: 'image'
+                                })}}>
                                     <Image
                                         source={`${SUPABASE_CLUB_ASSETS_ENDPOINT}/galleries/${id}/${item.name}`}
                                         className='w-full h-full rounded-lg'
@@ -242,12 +241,10 @@ export default function ClubDetails() {
                                 </TouchableHighlight>
                             }
                             if (item.metadata.mimetype === 'video/mp4') {
-                                return <TouchableHighlight onPress={() => {
-                                    setModalContent({ 
-                                        source: `${SUPABASE_CLUB_ASSETS_ENDPOINT}/galleries/${id}/${item.name}`,
-                                        mediaType: 'video'
-                                    })
-                                }}>
+                                return <TouchableHighlight onPress={() => { openModal('MediaModal', {
+                                    source: `${SUPABASE_CLUB_ASSETS_ENDPOINT}/galleries/${id}/${item.name}`,
+                                    mediaType: 'video'
+                                })}}>
                                     <VideoCard
                                         source={`${SUPABASE_CLUB_ASSETS_ENDPOINT}/galleries/${id}/${item.name}`}
                                         className='w-full h-full rounded-lg'
@@ -284,14 +281,10 @@ export default function ClubDetails() {
 
                         {galleryItems.map((item, index) => {
                             if (item.metadata.mimetype === 'image/webp') {
-                                // console.log(item)
-                                console.log(`${SUPABASE_CLUB_ASSETS_ENDPOINT}/galleries/${id}/${item.name}`)
-                                return <TouchableHighlight onPress={() => {
-                                        setModalContent({
-                                            source: `${SUPABASE_CLUB_ASSETS_ENDPOINT}/galleries/${id}/${item.name}`,
-                                            mediaType: 'image'
-                                        })
-                                    }}
+                                return <TouchableHighlight onPress={() => { openModal('MediaModal', {
+                                        source: `${SUPABASE_CLUB_ASSETS_ENDPOINT}/galleries/${id}/${item.name}`,
+                                        mediaType: 'image'
+                                    })}}
                                     className='w-[49%] h-32 rounded-lg'
                                     key={item.name + index}
                                 >
@@ -302,12 +295,10 @@ export default function ClubDetails() {
                                 </TouchableHighlight>
                             }
                             if (item.metadata.mimetype === 'video/mp4') {
-                                return <Pressable onPress={() => {
-                                        setModalContent({
-                                            source: `${SUPABASE_CLUB_ASSETS_ENDPOINT}/galleries/${id}/${item.name}`,
-                                            mediaType: 'video'
-                                        })
-                                    }}
+                                return <Pressable onPress={() => { openModal('MediaModal', {
+                                    source: `${SUPABASE_CLUB_ASSETS_ENDPOINT}/galleries/${id}/${item.name}`,
+                                    mediaType: 'video'
+                                })}}
                                     className='w-[49%] h-32 rounded-lg'
                                     key={item.name + index}
                                 >

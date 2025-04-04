@@ -1,6 +1,6 @@
 import { Pressable, View, Text } from 'react-native'
 
-import Ionicons from '@expo/vector-icons/Ionicons'
+// import Ionicons from '@expo/vector-icons/Ionicons'
 
 import { PointOfInterest } from '..'
 import { useEffect, useState } from 'react'
@@ -15,9 +15,10 @@ export default function PointOfInterestMarker({ feature, onPressed }: PointOfInt
     const [ fadeIn, setFadeIn ] = useState(false)
 
     useEffect(() => {
-        setTimeout(() => {
-            setFadeIn(true)
-        }, Math.random() * 500)
+        setFadeIn(true)
+        // setTimeout(() => {
+        //     setFadeIn(true)
+        // }, Math.random() * 500)
     }, [])
 
     return (

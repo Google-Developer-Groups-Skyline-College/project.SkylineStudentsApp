@@ -264,7 +264,7 @@ export default function SearchPage() {
                 <Card
                   type="Club"
                   field="Data Science"
-                  image={require("$/images/decoratives/boba_social.webp")}
+                  image={require("$/images/decoratives/stem-clubs-boba-social-fall-2024.webp")}
                   title="Data Science Club"
                   description="Hello, this is the Data Science Club available at Skyline College. We analyze and visualize data and derive conclusions from those."
                 />
@@ -278,7 +278,7 @@ export default function SearchPage() {
                 <Card
                   type="Club"
                   field="Engineering"
-                  image={require("$/images/decoratives/boba_social.webp")}
+                  image={require("$/images/decoratives/stem-clubs-boba-social-fall-2024.webp")}
                   title="Engineering & Robotics Club"
                   description="Hello, this is the Engineering & Robotics Club at Skyline College. Join the Engineering & Robotics Club to build exciting projects, and collaborate with peers."
                 />

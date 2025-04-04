@@ -1,6 +1,6 @@
 import { ThemedViewProps } from './ThemedView'
-import Image from './Image'
-import Card from './Card'
+import { Image } from './Image'
+import { Card } from './Card'
 
 interface VideoCardProps extends ThemedViewProps {
     source: string

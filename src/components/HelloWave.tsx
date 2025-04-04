@@ -6,7 +6,7 @@ import Animated, {
   withSequence,
 } from 'react-native-reanimated'
 
-import ThemedText from '@/components/ThemedText'
+import { ThemedText } from '@/components/ThemedText'
 import { Emoji } from '@/components/Emoji'
 
 export function HelloWave() {
@@ -23,7 +23,7 @@ export function HelloWave() {
 
   return (
     <Animated.View style={[animatedStyle, { justifyContent: 'center' }]}>
-      <Emoji name='waving-hand' />
+      <Emoji value='👋' />
     </Animated.View>
   )
 }
