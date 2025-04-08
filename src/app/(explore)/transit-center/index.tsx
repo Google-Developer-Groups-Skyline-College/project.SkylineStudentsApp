@@ -4,7 +4,7 @@ import Carousel from 'react-native-reanimated-carousel'
 import { LinearGradient } from 'expo-linear-gradient'
 import FontAwesome6 from '@expo/vector-icons/FontAwesome6'
 
-import ParallaxScrollView from '@/components/ParallaxScrollView'
+import { ParallaxScrollView } from '@/components/ParallaxScrollView'
 import { HorizontalRule } from '@/components/HorizontalRule'
 import { ThemedText } from '@/components/ThemedText'
 import { ThemedView } from '@/components/ThemedView'

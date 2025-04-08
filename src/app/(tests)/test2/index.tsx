@@ -7,13 +7,14 @@ import { View, Dimensions, TouchableHighlight, SectionList, SectionListData } fr
 import { LinearGradient } from 'expo-linear-gradient'
 import { Link } from 'expo-router'
 import { AntDesign, Ionicons } from '@expo/vector-icons'
+import Carousel from 'react-native-reanimated-carousel'
 
 import { LoadingScreen } from '@/components/LoadingScreen'
 import { ThemedText } from '@/components/ThemedText'
 import { Image } from '@/components/Image'
 
 import { useThemeColor } from '@/hooks/useThemeColor'
-import useRssFetch, { sanitizeXml } from '@/hooks/useRssFetch'
+import { useRssFetch, sanitizeXml } from '@/hooks/useRssFetch'
 
 import { EventCard } from './components/EventCard'
 import { ThemedView } from '@/components/ThemedView'
@@ -25,6 +26,8 @@ const PHOTOS = [
     require('$/images/decoratives/club_rush.webp'),
     require('$/images/decoratives/stem-clubs-boba-social-fall-2024.webp')
 ]
+
+const EVENTS_PER_PAGE = 40
 
 const RSS_EVENTS_ENDPOINT = 'https://events.skylinecollege.edu/live/rss/events/group/District%20Academic%20Calendar/group/Districtwide%20Events/group/Skyline%20Athletics/group/Skyline%20College/group/Skyline%20Transfer%20Center/group/Skyline%20College/header/Skyline%20College%20Events'
 
@@ -44,9 +47,7 @@ interface EventSection {
     data: EventRss[]
 }
 
-const EVENTS_PER_PAGE = 40
-
-export default function Resources() {
+export default function EventsListing() {
 
     const calendarIconColor = useThemeColor(null, 'icon')
 
@@ -60,18 +61,18 @@ export default function Resources() {
         if (!fetchedRss) return
         setPageRefreshing(true)
 
-        const collectedEvents = []
+        const collectedEvents: EventSection[] = []
         let currentDate
 
-        for (let item of fetchedRss.channel.item.slice((page - 1) * EVENTS_PER_PAGE, page * EVENTS_PER_PAGE)) {
-            const itemDate = new Date(item.pubDate).toLocaleDateString('en-US', { month: 'long', day: 'numeric', weekday: 'long' })
-            if (itemDate === currentDate) {
-                collectedEvents[collectedEvents.length - 1].data.push(item)
+        for (let event of fetchedRss.channel.item.slice((page - 1) * EVENTS_PER_PAGE, page * EVENTS_PER_PAGE)) {
+            const eventDate = new Date(event.pubDate).toLocaleDateString('en-US', { month: 'long', day: 'numeric', weekday: 'long' })
+            if (eventDate === currentDate) {
+                collectedEvents[collectedEvents.length - 1].data.push(event)
             } else {
-                currentDate = itemDate
+                currentDate = eventDate
                 collectedEvents.push({
-                    date: itemDate,
-                    data: [item]
+                    date: eventDate,
+                    data: [event]
                 })
             }
         }
@@ -79,61 +80,64 @@ export default function Resources() {
         setDatedEvents(collectedEvents)
         setTimeout(() => {
             setPageRefreshing(false)
-        }, 500)
+        }, 200)
     }, [page, fetchedRss])
 
     return (
         <>
-            { pageRefreshing && datedEvents
+            { pageRefreshing || !datedEvents
             ?
             <LoadingScreen />
             :
 
             <ThemedView className='w-full h-full rounded-t-3xl'>
 
-                <ThemedView className='flex w-full h-[15%] justify-end'>
+                <ThemedView className='w-full h-[17.5%]'>
                     {/* <Image source={require('$/images/decoratives/centerpiece.webp')} contentPosition={'top'} priority={'high'} cachePolicy={'memory-disk'} className='absolute w-full h-full object-cover' /> */}
-                    <Image source={require('$/images/decoratives/centerpiece.webp')} className='absolute w-full h-full object-cover' />
+                    {/* <Image source={require('$/images/decoratives/centerpiece.webp')} className='absolute w-full h-full object-cover' /> */}
+                    <Carousel
+                        width={width + 1}
+                        data={PHOTOS}
 
+                        loop
+                        autoPlay
+                        autoPlayInterval={3000}
+                        scrollAnimationDuration={4000}
+
+                        modeConfig={{
+                            parallaxScrollingScale: 0.9,
+                            parallaxAdjacentItemScale: 0.7
+                        }}
+
+                        renderItem={({ index }) => (
+                            <Image source={PHOTOS[index]} contentPosition='center' className='w-full h-full' />
+                        )}
+                    />
 
                     {/* overlays on image */}
                     <LinearGradient
                         className='absolute w-full h-full'
-                        colors={['#000000', '#FFFFFF00']} start={{ x: -0.05, y: 0.5 }} end={{ x: 1, y: 0.5 }}
+                        colors={['#000000', 'transparent']} start={{ x: 0.5, y: -0.1 }} end={{ x: 0.5, y: 0.5 }}
                     />
-
-                    <View className='p-4'>
-                        <View className='flex flex-row gap-x-2'>
-                            <ThemedText
-                            className='text-white leading-tight'
-                            type='title'
-                            style={{ textShadowColor: 'rgba(0, 0, 0, 1)', textShadowOffset: { width: -1, height: 1 }, textShadowRadius: 32 }}>
-                                Hello,
-                            </ThemedText>
-                        </View>
-                    </View>
-
                 </ThemedView>
 
 
-                <View className='h-[80%] p-4 gap-2'>
+                <View className='h-[77.5%] p-4 gap-2'>
                     <ThemedText type='subtitle' className='border-b-[1px] border-yellow-500 pb-2'>🎉 Upcoming Campus Events</ThemedText>
 
-                    { (fetchedRss && datedEvents) &&
                     <SectionList
                         sections={datedEvents}
-                        removeClippedSubviews
                         stickySectionHeadersEnabled
                         keyExtractor={(item, index) => item.title + index}
 
                         renderSectionHeader={({section: {date}}) => (
-                            <ThemedView className='flex flex-row items-center gap-2 opacity-95'>
+                            <ThemedView className='flex flex-row items-center gap-2 py-2 opacity-95'>
                                 <Ionicons
                                     name={'calendar'}
                                     size={18}
                                     color={calendarIconColor}
                                 />
-                                <ThemedText type='subtitle' className='py-2'>{date}</ThemedText>
+                                <ThemedText type='subtitle'>{date}</ThemedText>
                             </ThemedView>
                         )}
                         renderItem={({item}) => (
@@ -154,7 +158,6 @@ export default function Resources() {
                         )}
                         refreshing={pageRefreshing}
                     />
-                    }
                 </View>
 
                 <ThemedView className='flex h-[5%] items-center gap-1'>
