@@ -3,7 +3,7 @@ import { TouchableHighlight, View } from 'react-native'
 
 import { useModal } from 'react-native-modalfy'
 
-import ParallaxScrollView from '@/components/ParallaxScrollView'
+import { ParallaxScrollView } from '@/components/ParallaxScrollView'
 import { HorizontalRule } from '@/components/HorizontalRule'
 import { ThemedText } from '@/components/ThemedText'
 import { ThemedView } from '@/components/ThemedView'

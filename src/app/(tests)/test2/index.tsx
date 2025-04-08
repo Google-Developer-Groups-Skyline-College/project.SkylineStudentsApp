@@ -14,7 +14,7 @@ import { ThemedText } from '@/components/ThemedText'
 import { Image } from '@/components/Image'
 
 import { useThemeColor } from '@/hooks/useThemeColor'
-import useRssFetch, { sanitizeXml } from '@/hooks/useRssFetch'
+import { useRssFetch, sanitizeXml } from '@/hooks/useRssFetch'
 
 import { EventCard } from './components/EventCard'
 import { ThemedView } from '@/components/ThemedView'
@@ -46,7 +46,8 @@ interface EventSection {
     date: string
     data: EventRss[]
 }
-export default function Resources() {
+
+export default function EventsListing() {
 
     const calendarIconColor = useThemeColor(null, 'icon')
 
@@ -60,18 +61,18 @@ export default function Resources() {
         if (!fetchedRss) return
         setPageRefreshing(true)
 
-        const collectedEvents = []
+        const collectedEvents: EventSection[] = []
         let currentDate
 
-        for (let item of fetchedRss.channel.item.slice((page - 1) * EVENTS_PER_PAGE, page * EVENTS_PER_PAGE)) {
-            const itemDate = new Date(item.pubDate).toLocaleDateString('en-US', { month: 'long', day: 'numeric', weekday: 'long' })
-            if (itemDate === currentDate) {
-                collectedEvents[collectedEvents.length - 1].data.push(item)
+        for (let event of fetchedRss.channel.item.slice((page - 1) * EVENTS_PER_PAGE, page * EVENTS_PER_PAGE)) {
+            const eventDate = new Date(event.pubDate).toLocaleDateString('en-US', { month: 'long', day: 'numeric', weekday: 'long' })
+            if (eventDate === currentDate) {
+                collectedEvents[collectedEvents.length - 1].data.push(event)
             } else {
-                currentDate = itemDate
+                currentDate = eventDate
                 collectedEvents.push({
-                    date: itemDate,
-                    data: [item]
+                    date: eventDate,
+                    data: [event]
                 })
             }
         }
@@ -79,7 +80,7 @@ export default function Resources() {
         setDatedEvents(collectedEvents)
         setTimeout(() => {
             setPageRefreshing(false)
-        }, 500)
+        }, 200)
     }, [page, fetchedRss])
 
     return (
@@ -116,7 +117,7 @@ export default function Resources() {
                     {/* overlays on image */}
                     <LinearGradient
                         className='absolute w-full h-full'
-                        colors={['#000000', 'transparent']} start={{ x: 0.5, y: 1.1 }} end={{ x: 0.5, y: 0.2 }}
+                        colors={['#000000', 'transparent']} start={{ x: 0.5, y: -0.1 }} end={{ x: 0.5, y: 0.5 }}
                     />
                 </ThemedView>
 
@@ -124,21 +125,19 @@ export default function Resources() {
                 <View className='h-[77.5%] p-4 gap-2'>
                     <ThemedText type='subtitle' className='border-b-[1px] border-yellow-500 pb-2'>🎉 Upcoming Campus Events</ThemedText>
 
-                    { (fetchedRss && datedEvents) &&
                     <SectionList
                         sections={datedEvents}
-                        removeClippedSubviews
                         stickySectionHeadersEnabled
                         keyExtractor={(item, index) => item.title + index}
 
                         renderSectionHeader={({section: {date}}) => (
-                            <ThemedView className='flex flex-row items-center gap-2 opacity-95'>
+                            <ThemedView className='flex flex-row items-center gap-2 py-2 opacity-95'>
                                 <Ionicons
                                     name={'calendar'}
                                     size={18}
                                     color={calendarIconColor}
                                 />
-                                <ThemedText type='subtitle' className='py-2'>{date}</ThemedText>
+                                <ThemedText type='subtitle'>{date}</ThemedText>
                             </ThemedView>
                         )}
                         renderItem={({item}) => (
@@ -159,7 +158,6 @@ export default function Resources() {
                         )}
                         refreshing={pageRefreshing}
                     />
-                    }
                 </View>
 
                 <ThemedView className='flex h-[5%] items-center gap-1'>

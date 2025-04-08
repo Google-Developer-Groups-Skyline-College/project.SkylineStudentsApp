@@ -10,7 +10,7 @@ import { ThemedText } from '@/components/ThemedText'
 import { ThemedView } from '@/components/ThemedView'
 import { Image } from '@/components/Image'
 
-import useRssFetch, { sanitizeXml, extractImages } from '@/hooks/useRssFetch'
+import { useRssFetch, sanitizeXml, extractImages } from '@/hooks/useRssFetch'
 
 const SKYLINE_SHINES_ENDPOINT = 'https://skylineshines.skylinecollege.edu/feed/'
 

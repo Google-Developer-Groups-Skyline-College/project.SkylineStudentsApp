@@ -6,15 +6,15 @@ import Octicons from '@expo/vector-icons/Octicons'
 
 import BottomSheet, { BottomSheetView } from '@gorhom/bottom-sheet'
 import Mapbox from '@rnmapbox/maps'
+import { useQuery } from '@tanstack/react-query'
+import { QueryData } from '@supabase/supabase-js'
+
+import { useSupabase }from '@/hooks/useSupabase'
 
 import { ThemedBottomSheet } from '@/components/ThemedBottomSheet'
 
-import PointOfInterestCard from './components/PointOfInterestCard'
-import PointOfInterestMarker from './components/PointOfInterestMarker'
-
-import { useQuery } from '@tanstack/react-query'
-import { QueryData } from '@supabase/supabase-js'
-import useSupabase from '@/hooks/useSupabase'
+import { PointOfInterestCard } from './components/PointOfInterestCard'
+import { PointOfInterestMarker } from './components/PointOfInterestMarker'
 
 const START_COORDINATES = [-122.467574, 37.629341]
 const POI_MIN_ZOOM_RANGE = 18.21
@@ -31,20 +31,19 @@ interface ServiceHours {
   6: [ string, string ] | null
 }
 
-type Categories = 'Campus Services' | 'Recreational Area' | 'Events Area' | 'Study & Tutoring' | 'Uncategorized'
-
 export interface PointOfInterest {
   id: string
-  indoor_info?: {
-      building: number
-      floor: number
-      room: string
-  }
   name: string
   description: string
-  category: Categories
-  website_url?: string
+  category: 'Campus Services' | 'Recreational Area' | 'Events Area' | 'Study & Tutoring' | 'Uncategorized'
 
+  indoor_info?: {
+    building: number
+    floor: number
+    room: string
+  }
+
+  website_url?: string
   contact?: string
   hours?: ServiceHours
 }
@@ -152,7 +151,7 @@ export default function Map() {
               id={`pt-ann-${index}`}
               key={`pt-ann-${index}`}
             >
-              <PointOfInterestMarker feature={feature} onPressed={onPoiPressed} />
+              <PointOfInterestMarker feature={feature} enlarge={zoomLevel > (POI_MIN_ZOOM_RANGE * 1.07)} onPressed={onPoiPressed} />
             </Mapbox.MarkerView>
           ))}
           <Mapbox.LocationPuck />

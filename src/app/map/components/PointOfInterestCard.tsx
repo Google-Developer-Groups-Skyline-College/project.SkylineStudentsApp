@@ -1,29 +1,29 @@
-import React, { useState, useEffect } from 'react'
-import { Dimensions, View, Text, TouchableHighlight } from 'react-native'
+import React, { useEffect, useState } from 'react'
+import { Dimensions, Text, TouchableHighlight, View } from 'react-native'
+import { useModal } from 'react-native-modalfy'
 import { useSharedValue } from 'react-native-reanimated'
 import Carousel from 'react-native-reanimated-carousel'
-import { useModal } from 'react-native-modalfy'
 
-import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons'
 import Entypo from '@expo/vector-icons/Entypo'
+import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons'
 
-import { useQuery } from '@tanstack/react-query'
 import { QueryData } from '@supabase/supabase-js'
-
-import { LinkWrap } from '@/components/LinkWrap'
-import { HorizontalRule } from '@/components/HorizontalRule'
-import { ThemedText } from '@/components/ThemedText'
-import { Image } from '@/components/Image'
-import VideoCard from '@/components/VideoCard'
-
-import { PointOfInterest } from '..'
-
-import useSupabase from '@/hooks/useSupabase'
-
-import Environment from '@/constants/Environment'
+import { useQuery } from '@tanstack/react-query'
 
 import dayjs, { extend as extendDayjs } from 'dayjs'
 import customParseFormat from 'dayjs/plugin/customParseFormat'
+
+import { HorizontalRule } from '@/components/HorizontalRule'
+import { Image } from '@/components/Image'
+import { LinkWrap } from '@/components/LinkWrap'
+import { ThemedText } from '@/components/ThemedText'
+import { VideoCard } from '@/components/VideoCard'
+
+import { useSupabase } from '@/hooks/useSupabase'
+
+import Environment from '@/constants/Environment'
+
+import { PointOfInterest } from '..'
 
 extendDayjs(customParseFormat)
 
@@ -31,7 +31,7 @@ const SUPABASE_MAP_POIS_ENDPOINT = Environment.SUPABASE_URL + '/storage/v1/objec
 
 const width = Dimensions.get('window').width
 
-export default function PointOfInterestCard({ indoor_info, id, name, description, category, website_url, contact, hours }: PointOfInterest) {
+export function PointOfInterestCard({ indoor_info, id, name, description, category, website_url, contact, hours }: PointOfInterest) {
     const { openModal } = useModal()
     const carouselProgress = useSharedValue<number>(0)
 

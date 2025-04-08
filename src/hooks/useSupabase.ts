@@ -17,6 +17,6 @@ const supabase = createClient<Database>(Environment.SUPABASE_URL, Environment.SU
   }
 })
 
-export default function useSupabase() {
+export function useSupabase() {
   return supabase
 }

@@ -9,7 +9,7 @@ import { useQuery } from '@tanstack/react-query'
 
 import { useModal } from 'react-native-modalfy'
 
-import ParallaxScrollView from '@/components/ParallaxScrollView'
+import { ParallaxScrollView } from '@/components/ParallaxScrollView'
 import { LoadingScreen } from '@/components/LoadingScreen'
 import { LinkWrap } from '@/components/LinkWrap'
 import { ThemedView } from '@/components/ThemedView'
@@ -17,10 +17,10 @@ import { ThemedText } from '@/components/ThemedText'
 import { Footer } from '@/components/Footer'
 import { Image } from '@/components/Image'
 
-import useSupabase from '@/hooks/useSupabase'
+import { useSupabase }from '@/hooks/useSupabase'
 
 import Environment from '@/constants/Environment'
-import VideoCard from '@/components/VideoCard'
+import { VideoCard } from '@/components/VideoCard'
 // import MediaModal, { MediaModelContent } from '@/components/MediaModal'
 import { QueryData } from '@supabase/supabase-js'
 

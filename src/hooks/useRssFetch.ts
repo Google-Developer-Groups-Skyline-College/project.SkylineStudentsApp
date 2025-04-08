@@ -28,7 +28,7 @@ const xmlParser = new XMLParser({
     tagValueProcessor: (_, val) => decode(val)
 })
 
-export default function useRssFetch<RssItemStructure>(endpoint: string) {
+export function useRssFetch<RssItemStructure>(endpoint: string) {
 
     const fetchData = async () => {
         const response = await fetch(endpoint)
