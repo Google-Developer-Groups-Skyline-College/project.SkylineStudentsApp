@@ -10,7 +10,7 @@ const baseStyles: { [type in ThemedTextTypes]: string } = {
   subtitle: 'text-[22px] mb-1'
 }
 
-const basetyleFonts: { [type in ThemedTextTypes]: string } = {
+const baseStyleFonts: { [type in ThemedTextTypes]: string } = {
   default: '',
   title: 'RobotoSlab_700Bold',
   subtitle: 'RobotoSlab_700Bold'
@@ -26,6 +26,6 @@ export function ThemedText({ lightColor, darkColor, className, style, type = 'de
   const textColor = useThemeColor({ light: lightColor, dark: darkColor }, 'text')
 
   return (
-    <Text className={`${baseStyles[type]} ${textColor} ${className}`} {...rest} style={[style, { fontFamily: basetyleFonts[type] }]}/>
+    <Text className={`${baseStyles[type]} ${textColor} ${className}`} {...rest} style={[style, { fontFamily: baseStyleFonts[type] }]}/>
   )
 }

@@ -75,7 +75,8 @@
           "RNMapboxMapsDownloadToken": "",
           "RNMapboxMapsVersion": "11.0.0"
         }
-      ]
+      ],
+      "expo-localization"
     ],
     "experiments": {
       "typedRoutes": true

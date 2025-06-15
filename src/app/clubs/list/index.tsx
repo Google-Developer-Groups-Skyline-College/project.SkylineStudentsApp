@@ -1,38 +1,37 @@
-import { View, Text, Dimensions } from 'react-native'
+import { Dimensions, ScrollView, Text, View } from 'react-native'
 
 import { useEffect, useState } from 'react'
 import Carousel from 'react-native-reanimated-carousel'
 
-import { ThemedText } from '@/components/ThemedText'
-import { LinkWrap } from '@/components/LinkWrap'
-import { ThemedView } from '@/components/ThemedView'
-import { SearchBar } from '@/components/SearchBar'
-import { Card } from '@/components/Card'
-
-import ParallaxScrollView from '@/components/ParallaxScrollView'
-import { FilterSelector } from '@/components/FilterSelector'
-import { Image } from '@/components/Image'
-
-// import { Clubs, ClubDetails } from '@/constants/Clubs'
-import { TagDetails } from '@/constants/Tags'
-import Environment from '@/constants/Environment'
-
-import { Footer } from '@/components/Footer'
-import useSupabase from '@/hooks/useSupabase'
-
-import { useQuery } from '@tanstack/react-query'
 import { QueryData } from '@supabase/supabase-js'
+import { useQuery } from '@tanstack/react-query'
+
+import { Card } from '@/components/Card'
+import { Footer } from '@/components/Footer'
+import { FilterSelector } from '@/components/FilterSelector'
 import { HorizontalRule } from '@/components/HorizontalRule'
+import { Image } from '@/components/Image'
+import { LinkWrap } from '@/components/LinkWrap'
+import { SearchBar } from '@/components/SearchBar'
+import { ThemedText } from '@/components/ThemedText'
+
+import { useSupabase } from '@/hooks/useSupabase'
+
+import Environment from '@/constants/Environment'
+import { TagDetails } from '@/constants/Tags'
+import { ScreenBase } from '@/components/ScreenBase'
+import { LoadingScreen } from '@/components/LoadingScreen'
 
 const SUPABASE_CLUB_ASSETS_ENDPOINT = Environment.SUPABASE_URL + '/storage/v1/object/public/clubs-assets'
 
-const width = Dimensions.get('window').width
+const screenWidth = Dimensions.get('window').width
 
-const PHOTOS = [
+const CAROUSEL_IMAGE_SET = [
     require('$/images/decoratives/club_rush.webp'),
     require('$/images/decoratives/clubs/data_science_meeting.webp'),
+    require('$/images/decoratives/clubs/erc_solar_boat_group.webp'),
     require('$/images/decoratives/clubs/gdgoc_meeting.webp'),
-    require('$/images/decoratives/clubs/erc_group_photo.webp'),
+    require('$/images/decoratives/clubs/erc_group.webp'),
 ]
 
 interface ClubCardProps {
@@ -75,6 +74,7 @@ function ClubCard({ id, name, tags }: ClubCardProps) {
 }
 
 
+
 export default function ClubsListing() {
 
     const [ searchFilteredClubs, setSearchFilteredClubs ] = useState<Clubs>()
@@ -102,62 +102,63 @@ export default function ClubsListing() {
         }
     }, [searchFilteredClubs, queryClubs])
 
+    if (!searchFilteredClubs) return <LoadingScreen />
+
     return (
-        <View className='w-full h-full'>
-            <ParallaxScrollView
-                headerHeight={190}
-                headerImage={
-                    <Carousel
-                        width={width + 1}
-                        height={width / 2}
-                        data={PHOTOS}
+        <>
+            <ScreenBase
+                title='Discover Clubs'
+                subtitle='Find your communities.'
+                backdrop={
+                    <View className='w-full h-full'>
+                        <Carousel
+                            data={CAROUSEL_IMAGE_SET}
+                            width={screenWidth + 1}
+                            height={400}
 
-                        loop
-                        autoPlay
-                        autoPlayInterval={4000}
-                        scrollAnimationDuration={2000}
+                            loop
+                            autoPlay
+                            autoPlayInterval={4000}
+                            scrollAnimationDuration={4000}
 
-                        modeConfig={{
-                            parallaxScrollingScale: 0.9,
-                            parallaxAdjacentItemScale: 0.7
-                        }}
-
-                        renderItem={({ index }) => (
-                            <Image source={PHOTOS[index]} contentPosition='center' className='w-full h-full' />
-                        )}
-                    />
+                            defaultIndex={Math.floor(Math.random() * CAROUSEL_IMAGE_SET.length)}
+                            renderItem={({ index }) => (
+                                <Image source={CAROUSEL_IMAGE_SET[index]} contentPosition={'top center'} className='w-full h-full object-cover' />
+                            )}
+                        />
+                    </View>
                 }
             >
-                {/* title bar, also shows current search term if inputted */}
                 <View>
+
+                    {/* title bar, also shows current search term if inputted */}
+                    {searchTerm.length > 0 &&
                     <ThemedText type='subtitle' className='text-center'>
-                        {searchTerm.length > 0 ? `Searching: '${searchTerm}'` : 'Discover Student Clubs'}
+                        {`Searching: '${searchTerm}'`}
                     </ThemedText>
+                    }
 
-                    <HorizontalRule height={2} color='#e5e5e5' />
+                    {/* club listing */}
+                    { searchFilteredClubs &&
+                    <View className='gap-1'>
+                        {searchFilteredClubs.map((club) => {
+                            return (
+                                <ClubCard
+                                    id={club.id}
+                                    key={club.id}
+                                    name={club.name}
+                                    tags={club.tags}
+                                />
+                            )
+                        })}
+                    </View>
+                    }
+
+                    <Footer />
+
                 </View>
 
-                {/* <FilterSelector /> */}
-
-                {/* club listing */}
-                { searchFilteredClubs &&
-                <View className='gap-1'>
-                    {searchFilteredClubs.map((club) => {
-                        return (
-                            <ClubCard
-                                id={club.id}
-                                key={club.id}
-                                name={club.name}
-                                tags={club.tags}
-                            />
-                        )
-                    })}
-                </View>
-                }
-
-                <Footer />
-
-            </ParallaxScrollView>
+            </ScreenBase>
 
             {/* overlayed bottom search bar */}
             { baseSearchableClubs &&
@@ -172,7 +173,6 @@ export default function ClubsListing() {
                 />
             </Card>
             }
-            
-        </View>
+        </>
     )
 }

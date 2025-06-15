@@ -1,3 +1,5 @@
+// consider only just making opacity lower instead of inverting color
+
 import { View, PixelRatio, useColorScheme } from 'react-native'
 import invert from 'invert-color'
 
@@ -12,4 +14,4 @@ export function HorizontalRule({ height = 1, color = '#EEE' }) {
         height: pixelRatio * height,
         backgroundColor: color
     }} />
-}
+} 

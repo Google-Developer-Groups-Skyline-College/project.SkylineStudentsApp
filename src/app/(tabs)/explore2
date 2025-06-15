@@ -1,0 +1,459 @@
+import React, { useState, useEffect, useRef } from "react"
+import {
+  View,
+  TextInput,
+  TouchableOpacity,
+  Animated,
+  Alert,
+  ScrollView,
+  Text,
+  Dimensions
+} from "react-native"
+
+import { Ionicons } from "@expo/vector-icons"
+
+import Carousel from 'react-native-reanimated-carousel'
+
+import { ParallaxScrollView } from '@/components/ParallaxScrollView'
+import { ThemedText } from '@/components/ThemedText'
+import { Footer } from "@/components/Footer"
+import { Emoji } from '@/components/Emoji'
+import { Image } from '@/components/Image'
+
+import { LinearGradient } from "expo-linear-gradient"
+import { Card } from "@/components/Card"
+
+
+///////////////////////////////////////
+import { Platform } from 'react-native'
+import Swiper from 'react-native-deck-swiper'
+
+import { useNavigation } from 'expo-router'
+import { openBrowserAsync } from 'expo-web-browser'
+///////////////////////////////////////
+
+import { useRssFetch, sanitizeXml, extractImages } from '@/hooks/useRssFetch'
+
+const SKYLINE_SHINES_ENDPOINT = 'https://skylineshines.skylinecollege.edu/feed/'
+
+let platformAdaptedEndpoint = SKYLINE_SHINES_ENDPOINT
+
+// on web, we must use a CORS proxy (unless target rss server eventually changes its configured request headers)
+if (Platform.OS === 'web')
+    platformAdaptedEndpoint = 'https://cors-anywhere.herokuapp.com/' + SKYLINE_SHINES_ENDPOINT
+
+interface ArticleRss {
+    title: string
+    // time: string
+    link: string
+    image: string
+    description: string
+    ['content:encoded']: string
+    // location: string
+}
+///////////////////////////////////////
+
+const screenWidth = Dimensions.get('window').width
+
+const PHOTOS = [
+  require('$/images/decoratives/explore/3rd-annual-ride-conference-fireside.webp'),
+  require('$/images/decoratives/explore/rtsb-17-dance.webp'),
+  require('$/images/decoratives/explore/lunar-new-year-2025.webp'),
+  require('$/images/decoratives/explore/international-student-club-cultural-exchange-day-october-2024.webp'),
+  require('$/images/decoratives/explore/fireside-panel.webp')
+]
+
+function ClubCard({image, title, description}: {image: string, title: string, description: string}) {
+  return (
+    <Card className="h-52 w-96 rounded-3xl mr-2 bg-neutral-950 overflow-hidden">
+        <Image source={image} className='absolute w-full h-full' blurRadius={4} contentFit='cover' />
+        <Image source={image} className='w-full h-full bottom-0 opacity-95' contentFit='contain' />
+        <LinearGradient
+            className='absolute w-full h-full'
+            colors={['#000000', '#FFFFFF00']} start={{ x: 0.5, y: 1 }} end={{ x: 0.5, y: 0.5 }}
+        />
+        <View className='absolute bottom-0 w-full p-4'>
+            <Text className='text-lg text-white font-bold'>{title}</Text>
+            <Text className='text-base text-neutral-500 italic'>{description}</Text>
+        </View>
+    </Card>
+  )
+}
+
+export default function SearchPage() {
+  const searchPressed = () => {
+    Alert.alert("Search activated!")
+  }
+
+  // Texts useStates for the searchBars
+  const [text, setText] = useState("")
+  const [text1, setText1] = useState("")
+  const [text2, setText2] = useState("")
+
+  // These are useStates for whether the notification and the menu
+  // icon are pressed or not
+  const [isNotificationFilled, setNotificationFilled] = useState(false)
+  const [isMenuFilled, setMenuFilled] = useState(false)
+
+  // This is the useState for showing or hiding the smaller search bars
+  const [isOptionsVisible, setOptionsVisible] = useState(false)
+
+  {
+    /*
+    useState for notification badge on top of the notification icon
+    In this example, I added 5 as the number of notifications
+
+    - Lynn
+  */
+  }
+  const [notificationCount, setNotificationCount] = useState(2)
+
+  // useRef for animation
+  const heightAnimation = useRef(new Animated.Value(0)).current
+  const opacityAnimation = useRef(new Animated.Value(0)).current
+
+  // useEffect for transition animation
+  useEffect(() => {
+    if (isOptionsVisible) {
+      Animated.parallel([
+        Animated.timing(heightAnimation, {
+          toValue: 70,
+          duration: 300,
+          useNativeDriver: false,
+        }),
+        Animated.timing(opacityAnimation, {
+          toValue: 1,
+          duration: 400,
+          useNativeDriver: false,
+        }),
+      ]).start()
+    } else {
+      Animated.parallel([
+        Animated.timing(heightAnimation, {
+          toValue: 0,
+          duration: 300,
+          useNativeDriver: false,
+        }),
+        Animated.timing(opacityAnimation, {
+          toValue: 0,
+          duration: 350,
+          useNativeDriver: false,
+        }),
+      ]).start()
+    }
+  }, [isOptionsVisible])
+
+
+
+
+
+
+
+///////////////////////////////////////
+    const [ articles, setArticles ] = useState<ArticleRss[]>()
+    const navigation = useNavigation()
+
+    const fetchedRss = useRssFetch<ArticleRss>(platformAdaptedEndpoint)
+
+    useEffect(() => {
+        if (!fetchedRss) return
+
+        const collectedArticles: ArticleRss[] = []
+
+        fetchedRss.channel.item.map((item) => {
+            const foundImages = extractImages(item['content:encoded'])
+            const image = foundImages ? foundImages[1].split('?')[0] : ''
+
+            collectedArticles.push({
+                title: item.title,
+                description: item.description,
+                link: item.link,
+                ['content:encoded']: sanitizeXml(item['content:encoded']),
+                image: image
+            })
+        })
+
+        setArticles(collectedArticles)
+    }, [fetchedRss])
+
+    ///////////////////////////////////////
+
+  return (
+    <ParallaxScrollView
+      headerBackgroundColor={{ light: '#000', dark: '#000' }}
+      headerImage={
+        <>
+          <Carousel
+              width={screenWidth + 1}
+              height={screenWidth / 2}
+              data={PHOTOS}
+
+              loop
+              autoPlay
+              autoPlayInterval={4000}
+              scrollAnimationDuration={4000}
+
+              modeConfig={{
+                  parallaxScrollingScale: 0.9,
+                  parallaxAdjacentItemScale: 0.7
+              }}
+
+              renderItem={({ index }) => (
+                  <View className='flex w-full h-full justify-center'>
+                      <Image source={PHOTOS[index]} contentPosition='center' className='absolute w-full h-full rounded-lg' />
+                  </View>
+              )}
+          />
+
+          {/* overlays on image */}
+          <LinearGradient
+            className='absolute w-full h-[120%]'
+            colors={['#000000', '#FFFFFF00']} start={{ x: 0.5, y: 1 }} end={{ x: 0.5, y: 0.5 }}
+          />
+        </>
+      }>
+      <View className="flex-row justify-between items-center px-4 py-3">
+        {/* This is the left side of the "Nav Bar" on the top containing the icon
+          and the search text */}
+        <View className="flex-row gap-3">
+          <Image
+            source={require("$/images/mono-icon.png")}
+            className="w-8 h-8"
+            tintColor="gray"
+          />
+          <ThemedText className=" text-2xl font-bold">Explore</ThemedText>
+        </View>
+
+        {/*
+          This is the right side of the "Nav Bar" on the top containing the
+          notification bell icon and the hamburger menu icon.
+
+          I made them filled out when pressed so that, in the future, when we
+          implement a "notification screen" where they see all there notifications
+          and when we implement a "menu screen", we don't need to add the animations then.
+
+          I also added a badge with numbers under the notification bell so that when we have
+          a database, we can just easily add the number of notifications each user has.
+
+          - Lynn
+        */}
+
+        <View className="flex-row items-center space-x-4 gap-3">
+          {/* Notification Icon*/}
+          <View className="relative">
+            <TouchableOpacity
+              onPress={() => setNotificationFilled(!isNotificationFilled)}
+            >
+              <Ionicons
+                name={
+                  isNotificationFilled
+                    ? "notifications"
+                    : "notifications-outline"
+                }
+                size={24}
+                color="gray"
+              />
+            </TouchableOpacity>
+
+            {/* Notification Numbers */}
+            {notificationCount > 0 && (
+              <View className="absolute -top-2 -right-2 bg-red-600 rounded-full w-5 h-5 justify-center items-center">
+                <Text className="text-white text-xs font-bold">
+                  {notificationCount}
+                </Text>
+              </View>
+            )}
+          </View>
+
+          {/* Hamburger Menu Icon */}
+          <TouchableOpacity onPress={() => setMenuFilled(!isMenuFilled)}>
+            <Ionicons
+              name={isMenuFilled ? "menu-sharp" : "menu-outline"}
+              size={24}
+              color="gray"
+            />
+          </TouchableOpacity>
+        </View>
+      </View>
+
+      {/* This is the search bar under the navigation bar. */}
+
+      <View className="flex-row items-center border border-gray-300 rounded-3xl bg-white px-3 py-4 mx-4">
+        <Ionicons name="search" size={24} color="black" className="mr-2" />
+        <TextInput
+          className="flex-1 text-base"
+          placeholder="Search..."
+          cursorColor="black"
+          value={text}
+          onChangeText={setText}
+        />
+        {text.length > 0 && (
+          <TouchableOpacity onPress={() => setText("")}>
+            <Ionicons name="close-circle" size={24} color="gray" />
+          </TouchableOpacity>
+        )}
+
+        {/* Options Icon */}
+        <TouchableOpacity onPress={() => setOptionsVisible(!isOptionsVisible)}>
+          <Ionicons name="options-outline" size={24} color="black" />
+        </TouchableOpacity>
+      </View>
+
+      {/* These are the two search bars that would "filter" the search for the field above. */}
+      {/* Animated View for the two smaller search bars */}
+      <>
+      
+      <Animated.View
+        style={{
+          height: heightAnimation,
+          opacity: opacityAnimation,
+          display: (isOptionsVisible ? '' : 'none'),
+          overflow: "hidden",
+        }}
+      >
+        <View className="flex-row gap-2 flex-grow px-4 py-2">
+          {/* First Search Bar */}
+          <View className="flex-1 flex-row items-center border border-gray-300 rounded-3xl bg-white px-3 py-4">
+            <Ionicons name="search" size={24} color="black" className="mr-2" />
+            <TextInput
+              className="flex-1 text-base"
+              placeholder="Clubs, Programs..."
+              value={text1}
+              onChangeText={setText1}
+            />
+            {text1.length > 0 && (
+              <TouchableOpacity onPress={() => setText1("")}>
+                <Ionicons name="close-circle" size={24} color="gray" />
+              </TouchableOpacity>
+            )}
+            <Ionicons
+              name="albums-outline"
+              size={24}
+              color="black"
+              className="ml-2"
+            />
+          </View>
+
+          {/* Second Search Bar */}
+          <View className="flex-1 flex-row items-center border border-gray-300 rounded-3xl bg-white px-3 py-4">
+            <Ionicons name="search" size={24} color="black" className="mr-2" />
+            <TextInput
+              className="flex-1 text-base"
+              placeholder="Location..."
+              value={text2}
+              onChangeText={setText2}
+            />
+            {text2.length > 0 && (
+              <TouchableOpacity onPress={() => setText2("")}>
+                <Ionicons name="close-circle" size={24} color="gray" />
+              </TouchableOpacity>
+            )}
+            <Ionicons
+              name="location-outline"
+              size={24}
+              color="black"
+              className="ml-2"
+            />
+          </View>
+        </View>
+      </Animated.View>
+
+      {/* Search Button */}
+      <TouchableOpacity
+        className="items-center border rounded-3xl bg-white px-3 py-3 mx-4 "
+        activeOpacity={0.8}
+        //onPress={searchPressed}
+      >
+        <Text>Search</Text>
+      </TouchableOpacity>
+
+      </>
+
+
+
+
+
+
+
+
+      <View className="flex gap-2">
+
+        <View className='flex flex-row gap-x-2'>
+          <Emoji value='🔎' />
+          <ThemedText type='subtitle'>Explore Student Clubs</ThemedText>
+        </View>
+
+        <ScrollView horizontal>
+          <ClubCard title="Computer Science Club" description="Based on your Major: Computer Science" image={require("$/images/decoratives/clubs/gdgoc_meeting.webp")} />
+          <ClubCard title="Data Science Club" description="Based on your Major: Computer Science" image={require("$/images/decoratives/clubs/data_science_meeting.webp")} />
+          <ClubCard title="Engineering Robotics Club" description="Based on your Major: Computer Science" image={require("$/images/decoratives/clubs/engineering_robotics_club.webp")} />
+        </ScrollView>
+
+
+
+        <View className='flex flex-row gap-x-2'>
+          <Emoji value='🌴' />
+          <ThemedText type='subtitle'>Explore Campus Spots</ThemedText>
+        </View>
+
+        <ScrollView horizontal>
+          <ClubCard title="The Theater" description="Based on your Interest: Explore Culture" image={require("$/images/decoratives/explore/theater.webp")} />
+          <ClubCard title="The STEM Center" description="Based on your Major: Computer Science" image={require("$/images/decoratives/explore/mesa-stem-students-summer-internships-fall-2023.webp")} />
+          <ClubCard title="The Intercultural Center" description="Based on your Interest: Explore Culture" image={require("$/images/decoratives/explore/international-student-club-cultural-exchange-day-october-2024.webp")} />
+        </ScrollView>
+
+
+
+        <View className='flex flex-row gap-x-2'>
+          <Emoji value='🎉' />
+          <ThemedText type='subtitle'>Explore Campus Events</ThemedText>
+        </View>
+
+        <ScrollView horizontal>
+          <ClubCard title="Rock the School Bells" description="In 1-week @ The Farallon Room" image={require("$/images/decoratives/explore/rtsb-17-dance.webp")} />
+          <ClubCard title="55th Ethnic Cultural Night" description="In 2 days @ The Theater" image={require("$/images/decoratives/explore/theater-pointing.webp")} />
+        </ScrollView>
+
+      </View>
+
+
+
+      <View className='-mx-4 h-[400px]'>
+          {
+              articles &&
+              <>
+                {/* <ThemedText className="flex justify-center items-center w-full h-full"><ThemedText className="font-bold">You've viewed all the articles from this week! 🥳</ThemedText></ThemedText> */}
+                <Swiper
+                    cards={articles}
+                    renderCard={(card) => {
+                        return (
+                            <View className='rounded-3xl h-[45%] bg-neutral-950 overflow-hidden'>
+                                <Image source={card.image} className='absolute w-full h-full' blurRadius={4} contentFit='cover' />
+                                <Image source={card.image} className='w-full h-full bottom-0 opacity-95' contentFit='contain' />
+                                <LinearGradient
+                                    className='absolute w-full h-full'
+                                    colors={['#000000', '#FFFFFF00']} start={{ x: 0.5, y: 1 }} end={{ x: 0.5, y: 0.5 }}
+                                />
+                                <View className='absolute bottom-0 w-full  p-4'>
+                                    <Text className='text-lg text-white font-bold'>{card.title}</Text>
+                                    <Text className='text-base text-white'>{card.description + '...'}</Text>
+                                </View>
+                            </View>
+                        )
+                    }}
+
+                    onTapCard={(cardIndex) => { openBrowserAsync(articles[cardIndex].link) }}
+                    onSwipedAll={() => {  }}
+                    backgroundColor='transparent'
+                    cardIndex={0}
+                    stackSize={3}
+                />
+              </>
+          }
+      </View>
+
+    <Footer />
+
+    </ParallaxScrollView>
+  )
+}
