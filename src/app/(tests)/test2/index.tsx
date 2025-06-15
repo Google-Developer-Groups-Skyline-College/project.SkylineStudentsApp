@@ -18,10 +18,12 @@ import { useRssFetch, sanitizeXml } from '@/hooks/useRssFetch'
 
 import { EventCard } from './components/EventCard'
 import { ThemedView } from '@/components/ThemedView'
+import { ScreenBase } from '@/components/ScreenBase'
 
-const width = Dimensions.get('window').width
+const screenWidth = Dimensions.get('window').width
+const screenHeight = Dimensions.get('window').height
 
-const PHOTOS = [
+const CAROUSEL_IMAGE_SET = [
     require('$/images/decoratives/centerpiece.webp'),
     require('$/images/decoratives/club_rush.webp'),
     require('$/images/decoratives/stem-clubs-boba-social-fall-2024.webp')
@@ -33,7 +35,9 @@ const RSS_EVENTS_ENDPOINT = 'https://events.skylinecollege.edu/live/rss/events/g
 
 interface EventRss {
     title: string
-    description: string
+    description: {
+        p: string
+    }
     pubDate: string
     link: string
     'livewhale:image': string
@@ -83,52 +87,44 @@ export default function EventsListing() {
         }, 200)
     }, [page, fetchedRss])
 
+    if (pageRefreshing || !datedEvents) return <LoadingScreen />
+
     return (
         <>
-            { pageRefreshing || !datedEvents
-            ?
-            <LoadingScreen />
-            :
+            <ScreenBase
+                title='Upcoming Events'
+                subtitle='Campus festivities and social mixers.'
+                backdrop={
+                    <View className='w-full h-full'>
+                        <Carousel
+                            data={CAROUSEL_IMAGE_SET}
+                            width={screenWidth + 1}
+                            height={324}
 
-            <ThemedView className='w-full h-full rounded-t-3xl'>
+                            loop
+                            autoPlay
+                            autoPlayInterval={4000}
+                            scrollAnimationDuration={4000}
 
-                <ThemedView className='w-full h-[17.5%]'>
-                    {/* <Image source={require('$/images/decoratives/centerpiece.webp')} contentPosition={'top'} priority={'high'} cachePolicy={'memory-disk'} className='absolute w-full h-full object-cover' /> */}
-                    {/* <Image source={require('$/images/decoratives/centerpiece.webp')} className='absolute w-full h-full object-cover' /> */}
-                    <Carousel
-                        width={width + 1}
-                        data={PHOTOS}
+                            defaultIndex={Math.floor(Math.random() * CAROUSEL_IMAGE_SET.length)}
+                            renderItem={({ index }) => (
+                                <Image source={CAROUSEL_IMAGE_SET[index]} contentPosition={'top center'} className='w-full h-full object-cover' />
+                            )}
+                        />
+                    </View>
+                }
+                disableScrolling
+            >
 
-                        loop
-                        autoPlay
-                        autoPlayInterval={3000}
-                        scrollAnimationDuration={4000}
+                {/* <View> */}
 
-                        modeConfig={{
-                            parallaxScrollingScale: 0.9,
-                            parallaxAdjacentItemScale: 0.7
-                        }}
-
-                        renderItem={({ index }) => (
-                            <Image source={PHOTOS[index]} contentPosition='center' className='w-full h-full' />
-                        )}
-                    />
-
-                    {/* overlays on image */}
-                    <LinearGradient
-                        className='absolute w-full h-full'
-                        colors={['#000000', 'transparent']} start={{ x: 0.5, y: -0.1 }} end={{ x: 0.5, y: 0.5 }}
-                    />
-                </ThemedView>
-
-
-                <View className='h-[77.5%] p-4 gap-2'>
-                    <ThemedText type='subtitle' className='border-b-[1px] border-yellow-500 pb-2'>🎉 Upcoming Campus Events</ThemedText>
 
                     <SectionList
                         sections={datedEvents}
                         stickySectionHeadersEnabled
                         keyExtractor={(item, index) => item.title + index}
+                        style={{height: screenHeight - 220 - 64}}
+                        // className='h-[70%]'
 
                         renderSectionHeader={({section: {date}}) => (
                             <ThemedView className='flex flex-row items-center gap-2 py-2 opacity-95'>
@@ -151,34 +147,33 @@ export default function EventsListing() {
                                     end: item['livewhale:ends'] ? new Date(item['livewhale:ends']) : undefined
                                 }}
                                 link={item.link}
-                                description={sanitizeXml(item.description)}
+                                description={item.description.p}
                                 location={item['georss:featurename']}
                                 img={item['livewhale:image']}
                             />
                         )}
                         refreshing={pageRefreshing}
                     />
+
+                {/* </View> */}
+
+            </ScreenBase>
+
+            <ThemedView className='absolute flex items-center justify-center gap-1 w-full h-16 bottom-0'>
+                <View className='flex flex-row items-center justify-center gap-3'>
+                    <TouchableHighlight onPress={() => { setPage(Math.max(1, page - 1)) }}>
+                        <AntDesign name='leftsquare' color={'gray'} size={32} />
+                    </TouchableHighlight>
+                    <ThemedText className='font-black'>{`${page} (${page * EVENTS_PER_PAGE}/${4 * EVENTS_PER_PAGE})`}</ThemedText>
+                    <TouchableHighlight onPress={() => { setPage(Math.min(4, page + 1)) }}>
+                        <AntDesign name='rightsquare' color={'gray'} size={32} />
+                    </TouchableHighlight>
                 </View>
 
-                <ThemedView className='flex h-[5%] items-center gap-1'>
-                    <View className='w-full flex flex-row items-center justify-center gap-3'>
-                        <TouchableHighlight onPress={() => { setPage(Math.max(1, page - 1)) }}>
-                            <AntDesign name='leftsquare' color={'gray'} size={32} />
-                        </TouchableHighlight>
-                        <ThemedText className='font-black'>{`${page} (${page * EVENTS_PER_PAGE}/${4 * EVENTS_PER_PAGE})`}</ThemedText>
-                        <TouchableHighlight onPress={() => { setPage(Math.min(4, page + 1)) }}>
-                            <AntDesign name='rightsquare' color={'gray'} size={32} />
-                        </TouchableHighlight>
-                    </View>
-
-                    <Link href='https://events.skylinecollege.edu' asChild>
-                        <Ionicons name='earth' color={'gray'} size={32} className='absolute right-4' />
-                    </Link>
-                </ThemedView>
-
+                <Link href='https://events.skylinecollege.edu' asChild>
+                    <Ionicons name='earth' color={'gray'} size={32} className='absolute right-4' />
+                </Link>
             </ThemedView>
-
-            }
         </>
     )
 }
