@@ -28,7 +28,7 @@ import { TagDetails } from '@/constants/Tags'
 
 const SUPABASE_CLUB_ASSETS_ENDPOINT = Environment.SUPABASE_URL + '/storage/v1/object/public/clubs-assets'
 
-const width = Dimensions.get('window').width
+const screenWidth = Dimensions.get('window').width
 
 // interface ClubInfo {
 //     id: string
@@ -211,8 +211,8 @@ export default function ClubDetails() {
 
                     {/* picture carousel and page selection bar */}
                     <Carousel
-                        width={width - 32}
-                        height={width/2}
+                        width={screenWidth - 32}
+                        height={screenWidth/2}
                         data={galleryItems}
 
                         loop
