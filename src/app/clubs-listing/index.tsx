@@ -1,28 +1,25 @@
-import { View, Text, Dimensions } from 'react-native'
+import { Dimensions, Text, View } from 'react-native'
 
 import { useEffect, useState } from 'react'
 import Carousel from 'react-native-reanimated-carousel'
 
-import { ThemedText } from '@/components/ThemedText'
-import { LinkWrap } from '@/components/LinkWrap'
-import { ThemedView } from '@/components/ThemedView'
-import { SearchBar } from '@/components/SearchBar'
-import { Card } from '@/components/Card'
-
-import ParallaxScrollView from '@/components/ParallaxScrollView'
-import { FilterSelector } from '@/components/FilterSelector'
-import { Image } from '@/components/Image'
-
-// import { Clubs, ClubDetails } from '@/constants/Clubs'
-import { TagDetails } from '@/constants/Tags'
-import Environment from '@/constants/Environment'
-
-import { Footer } from '@/components/Footer'
-import useSupabase from '@/hooks/useSupabase'
-
-import { useQuery } from '@tanstack/react-query'
 import { QueryData } from '@supabase/supabase-js'
+import { useQuery } from '@tanstack/react-query'
+
+import { Card } from '@/components/Card'
+import { Footer } from '@/components/Footer'
+import { FilterSelector } from '@/components/FilterSelector'
 import { HorizontalRule } from '@/components/HorizontalRule'
+import { Image } from '@/components/Image'
+import { LinkWrap } from '@/components/LinkWrap'
+import { ParallaxScrollView } from '@/components/ParallaxScrollView'
+import { SearchBar } from '@/components/SearchBar'
+import { ThemedText } from '@/components/ThemedText'
+
+import { useSupabase } from '@/hooks/useSupabase'
+
+import Environment from '@/constants/Environment'
+import { TagDetails } from '@/constants/Tags'
 
 const SUPABASE_CLUB_ASSETS_ENDPOINT = Environment.SUPABASE_URL + '/storage/v1/object/public/clubs-assets'
 
